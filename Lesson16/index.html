@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JavaScript Lesson 16</title>
+	<meta charset="utf-8" />    
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+</head>
+<body>    
+    <h1>Canvas</h1>
+    <canvas width="600" height="400"></canvas>
+    
+    <script>
+    $(function() {
+        var canvas = document.querySelector('canvas');
+        var ctx = canvas.getContext('2d');
+//        ctx.fillRect(100, 100, 300, 100);
+//        ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
+//        ctx.fillRect(150, 150, 300, 100);
+//        ctx.strokeStyle = 'blue';
+//        ctx.strokeRect(200, 200, 300, 100);
+        
+        var w = parseInt(canvas.getAttribute('width'));
+        var h = parseInt(canvas.getAttribute('height'));
+        console.log("w: " + w + " h: " + h);
+        
+        ctx.strokeStyle = "black";
+        
+        var x = w/2, y = h/2, dx = 0, dy = 0;
+        var r = 10;
+        var wp = 80, hp = 10;
+        var xm = 0;
+        
+        // начальный вектор движения
+        if(Math.random() > 0.5) {
+            dx = - Math.random()*10;
+        } else {
+            dx = Math.random()*10;
+        }        
+        if(Math.random() > 0.5) {
+            dy = - Math.random()*10;
+        } else {
+            dy = Math.random()*10;
+        }
+        
+        $('canvas').mousemove(function(event){
+            xm = event.pageX - wp/2;
+        });
+        
+        
+        function draw() {
+            ctx.clearRect(0, 0, w, h);
+            ctx.beginPath();        
+            ctx.arc(x, y, r, 0, Math.PI*2, true);
+            ctx.closePath();
+            ctx.fill();
+            ctx.fillRect(xm, h-hp, wp, hp);
+            
+            x += dx;
+            y += dy;
+            if(x < r || x > (w - r)) {
+                dx = - dx;               
+            }
+            if(y < r) {
+                dy = - dy;                
+            }
+            
+            //setTimeout(draw, 1000/100);
+            requestAnimationFrame(draw);
+        }        
+        //setTimeout(draw, 1000/100);
+        requestAnimationFrame(draw);
+        
+    });
+    </script>
+</body>
+</html>

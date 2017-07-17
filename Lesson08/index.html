@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JavaScript Lesson08</title>
+	<meta charset="utf-8" />    
+    <style>
+        #output {            
+            width: 90%;
+            height: 50vh;
+            margin: 20px auto;
+            background: black;        
+            color: white;
+            overflow-y: hidden;
+            overflow-x: hidden;
+            font-family: monospace;
+            font-size: 16px;
+            padding: 5px;
+        }
+        #container {
+            width: 200px;
+            border: 1px solid;
+            padding: 10px;
+        }
+        input {            
+            margin: 3px auto;            
+        }
+        #clock {
+            height: 100px;
+            width: 250px;
+            border: 1px solid black;
+            margin: 10px auto;
+            text-align: center;
+            line-height: 100px;
+            font-family: cursive;
+            font-size: 50px;
+            border-radius: 20px;
+        }
+        #buttons {
+            width: 150px;
+            margin: 0 auto;
+        }
+        
+        .snowflake {
+            background-image: url(http://ladyandthecarpenter.com/wp-content/uploads/2014/12/Snowflake-08.gif);
+            position: absolute;
+            background-size: 50px;
+            width: 50px;
+            height: 50px;
+            top: 10px;
+            left: 100px;
+        }
+        
+    </style>
+</head>
+<body>    
+    <div id="output">●
+    text<br/>
+        text<br/>
+        text<br/>
+        text<br/>
+        text<br/>
+        text<br/>
+        text<br/>
+        
+    </div>
+    <div id="clock"></div>
+    <div id="buttons">
+    <input type="button" value="Start" onclick="start()" />
+    <input type="button" value="Stop" onclick="stop()" />
+    <input type="button" value="Clear" onclick="_clear()" />
+    </div>
+    
+    <input type="button" value="Start Winter" onclick="start_fall_snow();" />
+           
+
+    <script>
+        var out = document.getElementById("output");
+        
+        function print() {
+            for(let arg of arguments) {
+                let p = document.createElement("p");
+                p.appendChild(
+                    document.createTextNode(arg)
+                );
+                out.appendChild(p);
+            }
+        }
+       
+        function Animal(name) {            
+            let age = 10;     // private field
+            
+            this.name = name; // public field
+            
+            this.isAlive = true;
+            
+            this.Say = function() {
+                print(this.name + " sayed Mau");
+            };
+            this.GetAge = function() {
+                return age;
+            };
+            this.SetAge = function(new_age) {
+                age = new_age;
+            };
+        }
+        
+        Animal.prototype.color = "Blue";
+        Animal.prototype.DateOfBirth = function() {
+            let cur = new Date();
+            return cur.getFullYear() - parseInt(this.GetAge());
+        };
+        
+        var cat = new Animal("Cat");
+        print(cat.name);
+        cat.color = "White and Black";
+        print(cat.color);
+        //cat.Say = SayDog;
+        cat.Say();
+        cat.SetAge(1.5);
+        print(cat.GetAge());
+        print(cat.DateOfBirth());
+        
+        var dog = new Animal("Dog");
+        print(dog.name);
+        print(dog.isAlive);
+        print(dog.color);
+        dog.Say();
+        
+        Number.prototype.Reverse = function() {
+            let str = this.toString();
+            return str.split('').reverse().join('');
+        };
+        var num = 100000;
+        print(num.Reverse());
+        
+        var clock = document.getElementById("clock");
+        var timer;
+        var counter = 0;
+        
+        function setCurTime() {
+            let now = new Date();
+            counter++;
+            clock.innerHTML = counter;
+            //start();
+        }
+       
+        function start() {
+            //timer = setTimeout(setCurTime, 100);
+            timer = setInterval(setCurTime, 1000);
+        }
+        
+        function stop() {
+            //clearTimeout(timer);
+            clearInterval(timer);
+        }
+        
+        function _clear() {
+            clock.innerHTML = "";
+        }
+        
+        function start_fall_snow() {
+            let s = document.createElement("div");
+            s.classList.add("snowflake");
+            let x = 300;
+            let y = 10;
+            s.style.left = x+"px";
+            s.style.top = y+"px";
+            
+            document.body.appendChild(s);
+            setInterval(function(){
+                y += 1;  
+                s.style.top = y+"px";
+            }, 10);
+        }
+       
+        
+    </script>   
+
+</body>
+</html>

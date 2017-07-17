@@ -1,0 +1,16 @@
+jQuery Effects
+https://youtu.be/-uvLu95wPD8
+
+jQuery events
+https://youtu.be/VqfXo-Rm5VU
+https://youtu.be/GMYHXoG0UPg
+
+ajax
+https://youtu.be/ag5tSO0pzxg
+
+ajax jQuery
+https://youtu.be/RPdTWtR9TXA
+https://youtu.be/bL84N1K2Q1c
+
+canvas
+https://youtu.be/0Ros2r4y7cU

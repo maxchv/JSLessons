@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JavaScript Lesson10</title>
+	<meta charset="utf-8" />    
+    
+    
+</head>
+<body>       
+    <form>
+        <input type="text" id='data'/>
+        <input type="submit" />
+        <div id="output"></div>
+    </form>
+    
+    <script>
+        (function(){
+            
+            function List() {
+                this.arr = [];
+            }
+            
+            List.prototype.add = function(item) {
+                this.arr.push(item);
+            }
+            
+            List.prototype.get = function(idx) {
+                return this.arr[idx];
+            }
+            
+            List.prototype.count = function() {
+                return this.arr.length;
+            }
+            
+            var list = new List();
+            
+            window.addEventListener('load', function(e){
+               if(localStorage.list) {
+                    //print(localStorage.data);       
+                   let l = JSON.parse(localStorage.list);
+                   for(let item of l.arr) {
+                       print(item);
+                   }
+               } 
+            });
+            
+           var out = document.getElementById('output');
+           function print() {
+                for(let arg of arguments) {
+                    let p = document.createElement("p");
+                    p.appendChild(document.createTextNode(arg));
+                    console.log(null === out);
+                    out.appendChild(p);
+                }
+            }    
+            
+            var data = document.getElementById('data');
+            document.forms[0].addEventListener('submit', function(e){
+                 //localStorage.setItem('data', data.value);
+                list.add(data.value);
+                localStorage.list = JSON.stringify(list);
+                //print(localStorage.data);
+                e.preventDefault();                
+            });
+        })();
+    </script>
+</body>
+</html>

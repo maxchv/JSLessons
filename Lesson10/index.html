@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JavaScript Lesson10</title>
+	<meta charset="utf-8" />    
+    <style>
+        #output {            
+            width: 90%;
+            /*height: 50vh;*/
+            margin: 20px auto;
+            background: black;        
+            color: white;
+            overflow-y: hidden;
+            overflow-x: hidden;
+            font-family: monospace;
+            font-size: 16px;
+            padding: 5px;
+        }
+        #container {
+            width: 200px;
+            border: 1px solid;
+            padding: 10px;
+        }
+        input {            
+            margin: 3px auto;            
+        }
+        #clock {
+            height: 100px;
+            width: 250px;
+            border: 1px solid black;
+            margin: 10px auto;
+            text-align: center;
+            line-height: 100px;
+            font-family: cursive;
+            font-size: 50px;
+            border-radius: 20px;
+        }
+        #buttons {
+            width: 150px;
+            margin: 0 auto;
+        }
+        
+        .snowflake {
+            background-image: url(http://ladyandthecarpenter.com/wp-content/uploads/2014/12/Snowflake-08.gif);
+            position: absolute;
+            background-size: 50px;
+            width: 50px;
+            height: 50px;
+            top: 10px;
+            left: 100px;
+        }
+        .ex {
+            width: 100px;
+            height: 100px;
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>    
+    <div class="ex"></div>
+    <div id="output"></div>
+  
+    <script>
+        var out = document.getElementById("output");
+        
+        function print() {
+            for(let arg of arguments) {
+                let p = document.createElement("p");
+                p.appendChild(
+                    document.createTextNode(arg)
+                );
+                out.appendChild(p);
+            }
+        }        
+        (function() {
+            function Animal(kind) {            
+                // конструктор базового объекта
+                this.kind = kind; // public field
+            }
+
+            Animal.prototype.isCat = false;
+            Animal.prototype.show = function() {
+                print("Animal: " + this.kind);
+            };
+
+            var animal = new Animal('Animal');
+            //animal.show();
+
+            function Cat(kind, nickname, age, color) {
+                // конструктор производного объкта
+                Animal.apply(this, arguments); // вызов конструктора базового объекта
+                this.age = age;
+                this.color = color;
+                this.nickname = nickname;
+            }
+
+            // реализация наследования
+            Cat.prototype = Object.create(Animal.prototype);
+
+            // привязка к констуктору производного объекта
+            Cat.prototype.constructor = Cat;
+
+            Cat.prototype.show = function() {
+                Animal.prototype.show.apply(this);
+                //print("Cat");
+                print("Nickname: " + this.nickname);
+            };
+
+            Cat.prototype.toString = function() {
+                return this.kind + " " + this.nickname;
+            };
+
+            var cat = new Cat("Cat",'Васька', 1.5, 'Рыжый');
+            cat.show();
+            //cat.isCat = true;
+            print("isCat " + cat.isCat);
+
+            function obj() {
+                this.kind = 'test';
+            }
+            var o = new obj();
+            //Animal.prototype.show.call(o);
+            //Animal.prototype.show.call(cat);
+
+            print("Nic: " + cat['nickname']);
+
+            cat['new property'] = 'test';
+
+            print("All properties:");
+            for(let prop in cat) { 
+                if(cat.hasOwnProperty(prop)) 
+                {
+                    print(prop + ": " + cat[prop]);
+                }
+            }
+
+            print(cat);
+            console.dir(cat);
+
+            print("is instance of Cat: " + (cat instanceof Cat));
+            print("is instance of Animal: " + (cat instanceof Animal));
+            print("is instance of Object: " + (cat instanceof Object));
+            print("is instance of Array: " + (cat instanceof Array));
+        });      
+        /////////////////////////////
+        // ES6
+        (function(){
+            class Shape {
+                constructor(name) {
+                    print("Constructor Shape");
+                    this.name = name;
+                }
+                toString() {
+                    return "Shape: " + this.name;
+                }
+                // свойство
+                get Name() {
+                    return this.name;
+                }
+                set Name(name) {
+                    this.name = name;
+                }
+            }
+
+            // Inheritance
+            class Ellipse extends Shape {
+                constructor(width, heigth) {
+                    super('Ellipse');
+                    print("Constructor Ellipse");
+                    this.width = width;
+                    this.heigth = heigth;
+                }
+                toString() {
+                    return super.toString() + " width: " + this.width + " heigth: " +  this.heigth;
+                }
+
+                static createEllipse(w, h) {
+                    return new Ellipse(w, h);
+                }
+            }
+
+            class EllipseAndRectangle extends Ellipse {
+                constructor(w, h) {
+                    super(w, h);                
+                }
+            }
+
+            var e = Ellipse.createEllipse(100, 200);
+            print(e);
+            console.dir(e);
+            new Ellipse(100, 200);
+        });
+        (function(){
+            function Ellipse(name, w, h) {
+                this.name = name || "Ellipse";
+                this.w = w || 0;
+                this.h = h || 0;
+            }
+
+            var e = new Ellipse();
+            print(e.name);
+
+            var r = {
+                name:     'Rectangle',
+                width:    100,
+                height:   100,
+                toString: function() {
+                    return this.name + " w: " + this.width + " h: " + this.height;
+                },
+                get area() {
+                    print("area: " + (this.width * this.height));
+                }
+            };
+
+            print(r.name, r.width, r.height);
+            print(r);
+            print(r.area);
+
+            e = Object.create(r);        
+            e.width = 50;
+            print(e);
+            print(r);
+
+            var obj = {}; // Object.create(Object.prototype);
+
+            obj.name = "test";
+            console.log(obj.name);
+            console.dir(obj);
+            var s = 5;
+            var c = (function(start, stop) {
+                var count = start || 0;  
+                var end = stop || 10;
+                return {
+                    count: function () {
+                        return ++count;
+                    },
+                    next: function() {
+                        return count < end;
+                    },
+                    reset: function() {
+                        count = start || 0;
+                    }
+                };
+            })(s, 15);        
+            while(c.next()) {
+                print(c.count());
+            }
+
+            while(c.next()) {
+                print(c.count());
+            }
+        });
+        
+        // Модуль / пронстранство имен
+        // События
+        (function(){
+            var ex = document.querySelector('div.ex');
+            function click_rect() {
+                alert('click');
+            }
+            ex.addEventListener('click',function(event){
+                
+            });
+            //ex.removeEventListener('click', click_rect);
+        })();
+        
+        
+        
+    </script>   
+
+</body>
+</html>

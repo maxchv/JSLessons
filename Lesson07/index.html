@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JavaScript Lesson07</title>
+	<meta charset="utf-8" />    
+    <style>
+        .borderBlue {
+            width: 100px;
+            height: 100px;
+            border: 1px solid blue;
+        }
+        .borderRed {          
+            border: 10px solid red;
+        }
+    </style>
+</head>
+<body>
+<!--
+    <input type="text" name="text" value="first" />
+    <input type="button" onclick="gettext();" value="GetText" />
+    <p id="paragraph" onclick="change_text();">Это параграф</p>
+    
+    <p id="footer"></p>
+-->    
+    <div class="previousSibling">
+    </div>
+    <div class="parent" onclick="brush('yellow');">
+        <div class="first_child"></div>
+        <div class="inner_child"></div>
+        <div class="inner_child"></div>
+        <div class="inner_child"></div>        
+        <div class="last_child"></div>
+    </div>
+    <div class="nextSibling">
+    </div>
+    
+    <img width="100" src="" alt="" />
+    
+    <input type="button" onclick="toggle(this);" value="On" />
+    <input type="button" onclick="setImage();" value="Set image" />
+    
+    <script>
+        var img = document.getElementsByTagName("img")[0];
+        function setImage() {
+            img.src = "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"
+        }
+        
+        var div = document.querySelector("div.parent");
+//        div.style.width = "100px";
+//        div.style.height = "100px";
+//        div.style.borderStyle = "solid";
+//        div.style.borderColor = "blue";
+
+        //div.classList.add('borderRed');
+        //div.style.borderWidth = "10px";
+        function brush(color) {
+            div.style.backgroundColor = color;
+        }
+        var body = div.parentElement;
+        body.style.backgroundColor = "yellow";
+        console.log(body.tagName);
+        
+        var firstChild = div.firstElementChild;
+        firstChild.classList.add('borderBlue');
+        firstChild.innerHTML = "first Child";
+        
+        var lastChild = div.lastElementChild;
+        lastChild.classList.add('borderBlue');
+        lastChild.innerHTML = "last Child";
+        
+        for(let child of div.children) {
+            console.log(child.tagName);
+        }
+        var nextChild = firstChild.nextElementSibling;;
+        
+        do {                        
+            nextChild.classList.add('borderBlue');
+            nextChild.style.backgroundColor = "purple";
+        } while((nextChild = nextChild.nextElementSibling) && nextChild !== lastChild);
+        
+        var prevDiv = div.previousElementSibling;
+        prevDiv.classList.add('borderBlue');
+        
+        function toggle(self) {            
+            if(self.value == "On") {
+                self.value = "Off";
+            } else {
+                self.value = "On";
+            }
+            div.classList.toggle("borderRed");            
+        }
+        
+        var textNode = document.createTextNode("it it text node");
+        var commNode = document.createComment("it is comment");
+        lastChild.appendChild(textNode);
+        lastChild.appendChild(commNode);
+        console.log("childrens: " + lastChild.children.length);
+        console.log("child nodes " + lastChild.childNodes.length);
+        
+        var cloneFirst = firstChild.cloneNode(true);
+        cloneFirst.appendChild(document.createTextNode( " cloned node"));
+        div.appendChild(cloneFirst);
+        
+        div.removeChild(cloneFirst);
+        
+        div.insertBefore(cloneFirst, firstChild);
+        
+        div.replaceChild(cloneFirst.cloneNode(true), firstChild);
+        
+        
+//        var p = document.getElementById('paragraph');
+//        p.innerHTML ="<b>Strong text</b>";
+//        
+//        var firstInput = document.querySelector("input[type=button]");
+//        var allInputs = document.querySelectorAll("input");
+//        for(let input of allInputs) {
+//            p.innerHTML += input.value + ";";
+//        }
+//        
+//        allInputs = document.getElementsByTagName("input");
+//        
+//        var inputName = document.getElementsByName("text");
+//        inputName[0].value = "test";
+//                
+//        var f = document.getElementById('footer');
+//        f.innerHTML = "text";
+        
+        
+    </script>
+    
+    
+
+</body>
+</html>

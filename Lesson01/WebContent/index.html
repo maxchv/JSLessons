@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JavaScript Lesson01</title>
+	<meta charset="utf-8" />
+</head>
+<body>
+	<script type="text/javascript">
+		console.log("Hello JavaScipt");
+		
+		// Типы данных
+		var a = 10;
+		console.log('type of a is ' + typeof(a));
+		a = 1.0;
+		console.log('type of a is ' + typeof(a));
+		a = 'hello';
+		console.log('type of a is ' + typeof(a));
+		a = true;
+		console.log('type of a is ' + typeof(a));
+		a = [];
+		console.log('type of a is ' + typeof(a));
+		a = {};
+		console.log('type of a is ' + typeof(a));
+		a = null;
+		console.log('type of a is ' + typeof(a));
+		
+		a = Number('10');
+		console.log('type of a is ' + typeof(a));
+		
+		// 
+		a = parseInt('10px10');
+		if(!isNaN(a)) {
+			console.log('a = ' + a + ' type: ' + typeof(a));
+		}
+		
+		a = parseFloat('t1,25');
+		console.log('a = ' + a + ' type: ' + typeof(a));
+		
+		a = 1/2;
+		console.log('a = ' + a + ' type: ' + typeof(a));
+		
+		if(!isNaN(a) && isFinite(a)) {
+			var b = a + a;
+			
+			console.log('b = ' + b + ' type: ' + typeof(a));
+			b = 0 * b;
+			console.log('b = ' + b + ' type: ' + typeof(a));
+		}
+		// не числа
+		console.log(isNaN(NaN));		
+		console.log(isNaN(undefined));
+		console.log(isNaN({})); // объект
+		console.log(isNaN('a'));
+		
+		// числа
+		console.log(isNaN(null)); 
+		console.log(isNaN(true));
+		console.log(isNaN(37));
+		console.log(isNaN('1'));
+		
+		console.log(null+false);
+		
+		// не конечные значения
+		console.log(isFinite(Infinity));
+		console.log(isFinite(NaN));
+		console.log(isFinite(-Infinity));
+		
+		// все остальное - конечные значения
+		console.log(isFinite(4564654654654654654654654654));
+		
+		
+		// Операторы + - * / %
+		a = (+'2') + (+'2'); // 
+		console.log('a = ' + a);
+				
+		for(var $i=0; $i < 10; $i++) {
+			console.log($i);
+		}
+		
+		var arr = [1, 1.2, 'string', {}, []];
+		console.log(arr);
+		
+		// Диалоговые окна		
+		//alert('Hello JS');
+				
+		/*var ans = confirm('Хорошая погода?');		
+		console.log("answer = " + ans);
+		if(ans) {
+			alert("Поехали на шашлык");
+		} else {
+			alert("Буду играть в CS");
+		}
+		*/
+		var test;
+		console.log(test);
+		if(test) {
+			console.log("true");
+		} else {
+			console.log("false");
+		}
+		
+// 		var ans = prompt("Сколько тебе лет", '18');
+// 		console.log("answer = " + typeof ans + ": " + ans);
+// 		if(ans) {
+// 			console.log('not null');
+// 		} else {
+// 			console.log('is null');
+// 		}
+		
+		if('1' !== 1) {
+			console.log('not equals');
+		} else {
+			console.log('equals');
+		}
+		
+		var rnd = Math.floor(Math.random() * 100);
+		console.log(rnd);
+		
+		document.write('<h1>Java Script</h1>');
+		
+        if(parseInt(prompt("Сколько тебе лет?")) >= 18) {
+            document.write("<p>Добро пожаловать</p>");
+        } else {
+            document.write("<p>Иди, поиграй в песочнице");
+        }
+         
+        var d = 10;
+        console.log("d = " + d);
+        if(true) {
+            var d = 20;
+            console.log("d = " + d);
+        }
+        console.log("d = " + d);
+		
+		
+	</script>
+</body>
+</html>

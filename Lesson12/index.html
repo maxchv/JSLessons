@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JavaScript Lesson 12</title>
+	<meta charset="utf-8" />    
+    <style>
+        #output {            
+            width: 90%;
+            /*height: 50vh;*/
+            margin: 20px auto;
+            background: black;        
+            color: white;
+            overflow-y: hidden;
+            overflow-x: hidden;
+            font-family: monospace;
+            font-size: 16px;
+            padding: 5px;
+        }
+        
+        .ex {
+            width: 100px;
+            height: 100px;
+            border: 1px solid;
+        }
+        
+        #third {
+            width: 100px;
+            height: 100px;
+            border: 1px solid;
+            background-color: green;
+            margin: 25px auto;            
+        }
+        
+        #second {            
+            width: 150px;
+            height: 150px;
+            border: 1px solid;
+            background-color: yellow;
+            margin: 25px auto;    
+        }
+        
+        #first {            
+            width: 200px;
+            height: 200px;
+            border: 1px solid;
+            background-color: blue;
+        }
+        #secret {
+            margin: 10px;
+        }
+    </style>    
+</head>
+<body>        
+    <div id="output"></div>
+<!--
+    <div id='timer'></div>
+    <input type="url" name="url"/>
+    <button>Go</button>
+    <button>Close</button>
+-->
+<!--
+    <br />
+    <button>Forward</button>
+    <button>Back</button>
+    <input type="number" name="hist"/>
+    <button>Go</button>
+-->
+    <div id="mapholder"></div>
+    <script>
+        (function(){
+            var out = document.getElementById('output');
+            
+            function print(text, tag) {
+                tag = tag || 'p';                
+                var e = document.createElement(tag);
+                e.appendChild(document.createTextNode(text));
+                out.appendChild(e);
+            }
+            print("BOM", "h1");
+            
+            function clear() {
+                while(out.children.length) {
+                    out.removeChild(out.firstElementChild);
+                }
+            }
+            
+            function printAllProperties(obj) {
+                for(let name in obj) {
+                    print(name + ": " + obj[name]);
+                }
+            }
+            
+            print("screen", 'h2');
+            //printAllProperties(screen);
+            print("location", 'h2');
+            //printAllProperties(location);
+            
+            //var timer = document.querySelector('#timer');
+            
+            //var time = 10;
+//            var interval = setInterval(function(){
+//                //--time;
+//                //timer.innerHTML = time;
+//                //if(time <= 0) {
+//                    //location.assign('http://itstep.dp.ua');
+//                    //location.replace('http://itstep.dp.ua');
+//                    location.reload(true);
+//                    //clearInterval(interval);
+//                //}
+//            }, 1000);
+            //window.location = "http://itstep.dp.ua";
+//            var w; document.querySelector("button").addEventListener('click', function(event){
+//                var url = document.getElementsByName('url')[0].value;
+//                //window.open(url, '_self');
+//                 w = window.open(url, 'name', 'height=100,width=300');                 
+//            });
+//            
+//            document.querySelectorAll("button")[1].addEventListener('click', function(event){               
+//                 //window.close(w);
+//                if(!w.closed) {
+//                    w.close();
+//                }
+//            });
+//            
+            print("history", 'h2');
+//            printAllProperties(history);
+//            
+//            document.querySelectorAll("button")[0].addEventListener('click', function(event){               
+//                 history.forward();
+//            });
+//            
+//            document.querySelectorAll("button")[1].addEventListener('click', function(event){               
+//                 history.back();
+//            });
+//            
+//            document.querySelectorAll("button")[2].addEventListener('click', function(event){
+//                
+//                history.go(document.querySelector('[name=hist]').value);
+//            });
+            
+            print("navigator", 'h2');
+//            printAllProperties(navigator);
+//            
+//            navigator.geolocation.getCurrentPosition(function(cur) {
+//                console.dir(cur);
+//                print("long: " + cur.coords.longitude + " lat: " + cur.coords.latitude);
+//                var latlon = cur.coords.latitude + "," + cur.coords.longitude;
+//                var img_url = "http://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=14&size=400x300&sensor=false";
+//
+//                document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
+//            }, function(err) {
+//                console.log(err.getMessage());
+//            }
+//            );
+            
+            print("window", 'h2');
+            printAllProperties(window);
+            
+            
+
+        
+
+
+        })();
+    </script>
+</body>
+</html>

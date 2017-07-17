@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JavaScript Lesson 14</title>
+	<meta charset="utf-8" />    
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        #output {     
+            box-sizing: border-box;
+            margin: 0;
+            width: 100%;
+            height: 30%;
+            opacity: 0.5;
+            color: green;
+            margin: 20px auto;
+            background: black;        
+            overflow-y: auto;
+            overflow-x: hidden;
+            font-family: monospace;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 5px;
+            position: absolute;
+            bottom: 0;
+        }    
+        p {
+            margin: 0;
+        }
+        .ex {
+            margin: 10px;
+            height: 100px;
+            border: 1px solid;
+        }
+        button {
+            margin: 10px;
+        }
+        
+        #container {
+            border: 1px solid;
+            height: 200px;
+            margin: 10px;
+        }
+        
+        .box {
+            height: 50px;
+            width: 50px;
+            border: 1px solid;
+            position: static;
+            /*top: 10px;
+            left: 10px;*/
+            margin-left: 10px;
+            margin-top: 10px;   
+            background: red;
+        }
+    </style>    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+</head>
+<body>    
+    <button>Open</button>
+    <button>Close</button>
+    <button>Open/Close</button>
+    <button>End</button>
+    <div class="ex">
+        <strong>First</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+    </div>
+    
+    <div class="ex">
+        <strong>Second</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+    </div>
+    
+    <div class="ex">
+        <strong>Last</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+    </div>
+    
+    <div id="container"><div class="box"></div></div>
+  
+    <div id="output"></div>   
+        
+    <script>
+        $(function(){
+//            $('.ex:first')
+//                .hide(5000, function(){
+//                    $("#output").append("<p>complete</p>");
+//                })
+//                .show(1000)
+//                .toggle(2000);
+            
+//            $(".ex:eq(1)")
+//                .fadeOut(2000)
+//                //.fadeIn(3000)
+//                .fadeToggle(2500)
+//                .fadeTo(2000, 0.3);
+            
+//            var ex = document.querySelector('.ex');
+//            
+//            $(".ex").fadeTo('fast', 0.3);
+//            
+//            // курсор мыши над .ex
+//            $(".ex").mouseenter(function(e){
+//                $('#output').append("<p>enter</p>");
+//                $(this).fadeTo("slow", 1);
+//                console.dir($(this));
+//            });
+//            
+//            $(".ex").mouseout(function(e){
+//                 $('#output').append("<p>leave</p>");
+//                $(this).fadeTo("slow", 0.3);
+//            });
+            
+//            $('.ex:last')
+//                .slideUp(1000)
+//                .slideDown(2000);
+            
+            $('button:contains(Open)').click(function(){
+                //$("#output").append("<p>Open</p>");
+                $('.ex:last')
+                    .slideDown(1000);
+            });
+            
+             
+            $('button:contains(Close)').click(function(){
+                //$("#output").append("<p>Open</p>");
+                $('.ex:last')
+                    .slideUp(1000);
+            });
+            
+            $('button:contains(Open/Close)').click(function(){
+                //$("#output").append("<p>Open</p>");
+                $('.ex:last')
+                    .slideToggle(1000);
+            });
+            
+            $('button:contains(Open/Close)').mouseleave(function(){
+                 $('.ex:last')
+                    .finish();
+            });
+            
+            $('button:contains(End)').click(function(){ 
+                $('.ex:last')
+                    .finish();
+            });
+            
+            $('.box')
+                .animate({
+                    marginLeft: '+=90',
+                    marginTop:  '+=10',
+                    //left: '+=90',
+                    //top:  '+=50',
+                    opacity: 0.5
+                }, 1000, 'linear')
+                .delay(1000)
+                .animate({
+                    marginLeft: '-=90',
+                    marginTop:  '-=10',
+                    //left: '-=90',
+                    //top:  '-=50',
+                    opacity: 1
+                }, 1500, 'swing', function() {
+                    $("#output").append("<p>completed</p>");
+                });
+            
+            
+        });
+    </script>
+</body>
+</html>

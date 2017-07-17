@@ -1,0 +1,4 @@
+–еализовать приложение дл€ перевода текста (en/ru и ru/en) использу€ серсвис yandex translate (https://tech.yandex.ru/translate/doc/dg/reference/translate-docpage/),
+google translate (https://cloud.google.com/translate/v2/quickstart#translate-text) или любой другой.
+
+ƒл€ yandex translate можно использовать ключ: key=trnsl.1.1.20160629T083215Z.a7a970d15c2b4e36.7ac06c4902b0ac2b074a71c9a2f8678547977ca8

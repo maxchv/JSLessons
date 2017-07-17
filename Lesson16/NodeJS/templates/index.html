@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AJAX</title>
+	<meta charset="utf-8" />        
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+</head>
+<body>      
+<!--    <form action="getname">-->
+        <div>
+        Type here: 
+        <select id="lang">
+            <option value="en-ru">EN/RU</option>
+            <option value="ru-en">RU/EN</option>            
+        </select>
+        <br />
+        <textarea rows="5" cols="55"></textarea>
+        </div>
+        <div id="trans"></div>
+<!--
+        <input type="text" name='q' list="hint"/>
+        <datalist id="hint"></datalist>
+-->
+<!--
+        <input type="submit" />
+    </form> 
+-->
+    <script>
+        $(function() {
+            //$('input').keyup(function(event){
+            $('textarea').keyup(function(event){
+//                var xhr = new XMLHttpRequest();
+//                
+//                xhr.onreadystatechange = function() {
+//                    console.log("readyState: " + xhr.readyState);  
+//                    console.log("status: " + xhr.status);
+//                    
+//                    if(xhr.readyState == 4 && xhr.status == 200) {
+//                        console.log("responseType: " + xhr.responseType);
+//                        console.log("responseText: " + xhr.responseText);
+//                        //xhr.responseXML;
+//                        var data = JSON.parse(xhr.responseText);
+//                        $("#hint").empty();
+//                        for(let name of data.names) {
+//                            $("<option>").text(name).appendTo('#hint');
+//                        }
+//                    }
+//                };
+//                
+//                xhr.open("GET", "getname?q="+$('input:eq(0)').val(), true);
+//                xhr.send();
+                
+//                $.ajax({
+//                    //url: "getname",
+//                    url: "https://translate.yandex.net/api/v1.5/tr.json/translate",
+//                    //data: { q: $('input:eq(0)').val() },                    
+//                    data: {
+//                        key: 'trnsl.1.1.20160629T083215Z.a7a970d15c2b4e36.7ac06c4902b0ac2b074a71c9a2f8678547977ca8',
+//                        text: $(this).val(),
+//                        lang: $("#lang").val()
+//                    },
+//                    type: "POST",                    
+//                    dataType: 'json'
+//                })
+//                    .fail(function(xhr, status, error) {
+//                        console.log('error: ' + error);
+//                    })
+//                    .done(function(data){
+//                        console.dir(data);
+////                        $("#hint").empty();
+////                        for(let name of data.names) {
+////                            $("<option>").text(name).appendTo('#hint');
+////                        }
+//                        $("#trans").empty();         
+//                        for(let t of data.text) {
+//                            $("<option>").text(t).appendTo('#trans');
+//                        }
+//                    })
+//                    .always(function(xhr, status){
+//                        console.log('status: ' + status);
+//                    });
+                $.get("https://translate.yandex.net/api/v1.5/tr.json/translate",{
+                        key: 'trnsl.1.1.20160629T083215Z.a7a970d15c2b4e36.7ac06c4902b0ac2b074a71c9a2f8678547977ca8',
+                        text: $(this).val(),
+                        lang: $("#lang").val()
+                }, function(data){
+                        $("#trans").empty();         
+                        for(let t of data.text) {
+                            $("<option>").text(t).appendTo('#trans');
+                        }
+                });
+                
+            });
+        });
+    </script>
+</body>
+</html>

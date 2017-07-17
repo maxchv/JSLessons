@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AJAX</title>
+	<meta charset="utf-8" />        
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+</head>
+<body>      
+<!--    <form action="getname">-->
+        Type here: 
+        <input type="text" name='q' list="hint"/>
+        <datalist id="hint"></datalist>
+<!--
+        <input type="submit" />
+    </form> 
+-->
+    <script>
+        $(function() {
+            $('input').keyup(function(event){
+                var xhr = new XMLHttpRequest();
+                
+                xhr.onreadystatechange = function() {
+                    console.log("readyState: " + xhr.readyState);  
+                    console.log("status: " + xhr.status);
+                    
+                    if(xhr.readyState == 4 && xhr.status == 200) {
+                        console.log("responseType: " + xhr.responseType);
+                        console.log("responseText: " + xhr.responseText);
+                        var data = JSON.parse(xhr.responseText);
+                        $("#hint").empty();
+                        for(let name of data.names) {
+                            $("<option>").text(name).appendTo('#hint');
+                        }
+                    }
+                };
+                
+                xhr.open("GET", "getname?q="+$('input:eq(0)').val(), true);
+                xhr.send();
+                
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JavaScript Lesson 12</title>
+	<meta charset="utf-8" />    
+    <style>
+        #output {            
+            width: 90%;
+            /*height: 50vh;*/
+            margin: 20px auto;
+            background: black;        
+            color: white;
+            overflow-y: hidden;
+            overflow-x: hidden;
+            font-family: monospace;
+            font-size: 16px;
+            padding: 5px;
+        }
+        
+        .mark {
+            background-color: yellow;
+        }
+    </style>  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+</head>
+<body>        
+    <div id="output"></div>
+
+    <p>first</p>
+    <p>second</p>
+    <p>third</p>
+    
+    <script>
+        (function(){
+                                                
+            //var out = document.querySelector('#output');
+//            out.addEventListener('mouseover', function(event){
+//                
+//            });
+            
+            //jQuery('#output');
+            
+            
+            $("#output").mouseover(function(event){
+               //alert('over'); 
+            });
+            
+            
+            $("p").click(function(event){
+                $(this).css('color', 'red');
+                $(this).toggleClass('mark');
+                $(this).attr('title', 'maked');
+            });
+            
+            
+            function print(txt, tag) {
+                tag = tag || 'p';                
+//                var e = document.createElement(tag);
+//                e.appendChild(document.createTextNode(text));
+//                out.appendChild(e);
+                $("<"+tag+">").text(txt).appendTo($('#output'));
+            }
+            
+            print('new text');
+            function clear() {
+//                while(out.children.length) {
+//                    out.removeChild(out.firstElementChild);
+//                }
+                $('#output').empty();
+            }
+            clear();
+            
+        })();
+        
+
+        
+    </script>
+</body>
+</html>

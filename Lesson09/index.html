@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JavaScript Lesson08</title>
+	<meta charset="utf-8" />    
+    <style>
+        #output {            
+            width: 90%;
+            /*height: 50vh;*/
+            margin: 20px auto;
+            background: black;        
+            color: white;
+            overflow-y: hidden;
+            overflow-x: hidden;
+            font-family: monospace;
+            font-size: 16px;
+            padding: 5px;
+        }
+        #container {
+            width: 200px;
+            border: 1px solid;
+            padding: 10px;
+        }
+        input {            
+            margin: 3px auto;            
+        }
+        #clock {
+            height: 100px;
+            width: 250px;
+            border: 1px solid black;
+            margin: 10px auto;
+            text-align: center;
+            line-height: 100px;
+            font-family: cursive;
+            font-size: 50px;
+            border-radius: 20px;
+        }
+        #buttons {
+            width: 150px;
+            margin: 0 auto;
+        }
+        
+        .snowflake {
+            background-image: url(http://ladyandthecarpenter.com/wp-content/uploads/2014/12/Snowflake-08.gif);
+            position: absolute;
+            background-size: 50px;
+            width: 50px;
+            height: 50px;
+            top: 10px;
+            left: 100px;
+        }
+        
+    </style>
+</head>
+<body>    
+    <div id="output"></div>
+  
+
+    <script>
+        var out = document.getElementById("output");
+        
+        function print() {
+            for(let arg of arguments) {
+                let p = document.createElement("p");
+                p.appendChild(
+                    document.createTextNode(arg)
+                );
+                out.appendChild(p);
+            }
+        }
+        
+        function Animal(kind) {            
+            // конструктор базового объекта
+            this.kind = kind; // public field
+        }
+        
+        Animal.prototype.isCat = false;
+        Animal.prototype.show = function() {
+            print("Animal: " + this.kind);
+        };
+        
+        var animal = new Animal('Animal');
+        //animal.show();
+       
+        function Cat(kind, nickname, age, color) {
+            // конструктор производного объкта
+            Animal.apply(this, arguments); // вызов конструктора базового объекта
+            this.age = age;
+            this.color = color;
+            this.nickname = nickname;
+        }
+        
+        // реализация наследования
+        Cat.prototype = Object.create(Animal.prototype);
+        
+        // привязка к констуктору производного объекта
+        Cat.prototype.constructor = Cat;
+        
+        Cat.prototype.show = function() {
+            Animal.prototype.show.apply(this);
+            //print("Cat");
+            print("Nickname: " + this.nickname);
+        };
+        
+        Cat.prototype.toString = function() {
+            return this.kind + " " + this.nickname;
+        };
+        
+        var cat = new Cat("Cat",'Васька', 1.5, 'Рыжый');
+        cat.show();
+        //cat.isCat = true;
+        print("isCat " + cat.isCat);
+        
+        function obj() {
+            this.kind = 'test';
+        }
+        var o = new obj();
+        //Animal.prototype.show.call(o);
+        //Animal.prototype.show.call(cat);
+            
+        print("Nic: " + cat['nickname']);
+        
+        cat['new property'] = 'test';
+        
+        print("All properties:");
+        for(let prop in cat) {       
+           print(prop + ": " + cat[prop]);
+        }
+                
+        print(cat);
+        console.dir(cat);
+        
+        
+        class Shape {
+            constructor(name) {
+                this.name = name;
+            }
+            toString() {
+                return "Shape: " + this.name;
+            }
+            
+            get Name() {
+                return this.name;
+            }
+            
+            set Name(name) {
+                this.name = name;
+            }
+        }
+        
+        var sh = new Shape('shape');
+        print(sh);
+        
+        class Ellipse extends Shape {
+            const PI = 3.14;
+            constructor(width, heigth) {
+                super('Ellipse');
+                this.width = width;
+                this.height = heigth;
+            }
+            
+            toString() {
+                return super.toString() 
+                       + " width: " + this.width 
+                       + " heigth: " + this.height;
+                
+            }
+            
+            area() {
+                this.PI = 3.14;
+                return this.width * this.height;
+            }
+        }
+        
+        var e = new Ellipse(10, 20);
+        print(e);
+        
+    </script>   
+
+</body>
+</html>

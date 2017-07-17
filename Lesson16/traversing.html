@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Traversing</title>
+<meta charset="utf-8" /> 
+<style>
+    
+    
+.ancestors * {
+    display: block;
+    border: 2px solid lightgrey;
+    color: lightgrey;
+    padding: 5px;
+    margin: 15px;
+}
+    .mark {
+        color: black;
+        border: 1px solid blue;
+    }
+</style>
+   
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script>
+$(function(){
+    
+});
+</script>
+</head>
+<body>
+
+<div class="ancestors">
+  <div>div
+    <ul>ul
+      <li>li
+        <span>span</span>
+      </li>
+        <li>li
+        <span>span</span>
+      </li>
+           <li>li
+        <span>span</span>
+      </li>
+    </ul>
+  </div>
+
+  <div>div
+    <p>p
+        <span>span</span>
+      </p>
+  </div>
+    
+    <div>div
+    <p>p
+        <span>span</span>
+      </p>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,3 @@
+Реализовать выподающее меню по примеру http://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_dropdown_navbar_click, но на jQuery.
+
+Разметка находится в файле menu.html

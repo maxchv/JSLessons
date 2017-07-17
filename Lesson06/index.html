@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JavaScript Lesson06</title>
+	<meta charset="utf-8" />    
+</head>
+<body>
+    <input type="text" name="text" />
+    <input type="button" onclick="gettext();" value="GetText" />
+    <p id="paragraph" onclick="change_text();">Это параграф</p>
+    
+    <script>
+//        var p = document.getElementById('paragraph');        
+//        function change_text() {
+//            p.innerHTML = "Да, да, это параграф!";
+//        }
+//        var input = document.querySelector("input");
+//        function gettext() {
+//            p.innerHTML = input.value;
+//            let left = parseInt(p.style.marginLeft) || 0;
+//            left += 10;
+//            console.log(typeof left);
+//            p.style.marginLeft = left + "px";
+//        }
+        var label = document.createElement("label");
+        label.innerHTML = "First quetion ";
+        document.body.appendChild(label);
+        
+        var select = document.createElement('select');
+        select.id="select1";
+        label.setAttribute("for", "select1");
+        
+        var opt = document.createElement("option");
+        opt.innerHTML = "Да";
+        opt.title = "title";
+        opt.value = "0";
+        select.appendChild(opt);
+        
+         opt = document.createElement("option");
+        opt.innerHTML = "Иногда";
+        opt.value = "1";
+        select.appendChild(opt);
+        
+         opt = document.createElement("option");
+        opt.innerHTML = "Нет";
+        opt.value = "2";
+        select.appendChild(opt);
+        
+        document.body.appendChild(select);
+    </script>
+
+</body>
+</html>

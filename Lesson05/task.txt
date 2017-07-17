@@ -1,0 +1,17 @@
+1. найти содержимое аттрибута src и вывести на в html
+<img src="http://ljlkjl" alt=""/>
+<img src="http://jkahfa" alt=""/>
+<img src="http://ajkfskljs" alt=""/>
+<img src="http://kajfkl" alt=""/>
+
+2. заменить расширения с .doc на .pdf и вывести в html
+ <a href="document01.doc" title="Документ pdf" >Скачать документ 01</a>
+ <a href="doc.doc" title="Документ pdf" >Скачать документ 02</a>
+ <a href="http://docs.doc" title="Документ pdf" >Скачать документ 03</a>
+
+3. убрать все теги, т.е. оставить только текст
+<div id="Translation">
+<p>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness."</p>
+<h3>Розділ 1.10.33 "de Finibus Bonorum et Malorum", написаного Цицероном у 45 році до н.е.</h3>
+<p>"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos "</p>
+</div>

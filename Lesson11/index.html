@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JavaScript Lesson10</title>
+	<meta charset="utf-8" />    
+    <style>
+        #output {            
+            width: 90%;
+            /*height: 50vh;*/
+            margin: 20px auto;
+            background: black;        
+            color: white;
+            overflow-y: hidden;
+            overflow-x: hidden;
+            font-family: monospace;
+            font-size: 16px;
+            padding: 5px;
+        }
+        
+        .ex {
+            width: 100px;
+            height: 100px;
+            border: 1px solid;
+        }
+        
+        #third {
+            width: 100px;
+            height: 100px;
+            border: 1px solid;
+            background-color: green;
+            margin: 25px auto;            
+        }
+        
+        #second {            
+            width: 150px;
+            height: 150px;
+            border: 1px solid;
+            background-color: yellow;
+            margin: 25px auto;    
+        }
+        
+        #first {            
+            width: 200px;
+            height: 200px;
+            border: 1px solid;
+            background-color: blue;
+        }
+        #secret {
+            margin: 10px;
+        }
+    </style>
+    <script src="src/script.js"></script>
+</head>
+<body>    
+    <div class="ex"></div>
+    <div id="output"></div>
+    
+    <div id='first'>
+        <div id='second'>
+            <div id='third'>
+            </div>
+        </div>
+    </div>
+    
+    <input type="text" id='secret' />
+</body>
+</html>

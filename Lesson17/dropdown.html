@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Drop and Down</title>
+    <style>
+        #drop {
+            width: 100px;
+            height: 100px;
+            padding: 0px;
+            border-radius: 8px;
+            border: 1px dotted #aaaaaa;
+            z-index: 10;
+            line-height: 100px;
+            text-align: center;
+            color: lightgray;
+        }
+        #drag {
+            z-index: -1;
+            display: block;
+        }
+        #file {
+            border: 0 solid black;
+            height: 100px;
+            width: 100px;
+        }
+    </style>
+    <script src="jquery-3.0.0.js"></script>
+</head>
+
+<body>
+    <div id="drop">drop here</div>
+    <img id="drag" src="logo.png" draggable="true" width="100" height="100">
+    <div id="file"></div>
+    <script>
+        (function () {
+            $('#drag').on('dragstart', function (ev) {
+                var dt = ev.originalEvent.dataTransfer;
+                dt.effectAllowed = 'move';
+                dt.setData("id", this.id);
+            });
+            
+            $('#drop').on('dragover', function(ev) {
+                var dt = ev.originalEvent.dataTransfer;
+                dt.effectAllowed = 'move';
+                ev.preventDefault();
+            });
+            
+            $('#drop').on('drop', function (ev) {
+                ev.preventDefault();
+                var dt = ev.originalEvent.dataTransfer;
+                
+                $(this).empty();
+                $(this).append($("#"+dt.getData('id')));
+            });
+            
+            $('#file').on('dragover', function(ev) {
+                var dt = ev.originalEvent.dataTransfer;
+                dt.effectAllowed = 'move';
+                ev.preventDefault();
+            });
+            
+            $("#file").on('drop', function (ev) {
+                ev.preventDefault();
+               
+                var dataTransfer = ev.originalEvent.dataTransfer;
+                
+                console.log(dataTransfer.files);
+                if (dataTransfer.files && dataTransfer.files.length > 0) {
+                    var reader = new FileReader();
+                    var self = this;
+                    reader.onload= function(ev) {
+                        $(self).append(ev.target.result);
+                    }
+                    reader.readAsText(dataTransfer.files[0]);
+                    
+                }
+            });
+        })();
+    </script>
+
+</body>
+
+</html>

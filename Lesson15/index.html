@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JavaScript Lesson 15</title>
+	<meta charset="utf-8" />    
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        #output {     
+            box-sizing: border-box;
+            margin: 0;
+            width: 100%;
+            height: 30%;
+            opacity: 0.5;
+            color: green;
+            margin: 20px auto;
+            background: black;        
+            overflow-y: auto;
+            overflow-x: hidden;
+            font-family: monospace;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 5px;
+            position: absolute;
+            bottom: 0;
+        }    
+        p {
+            margin: 0;
+        }
+        .ex {
+            margin: 10px;
+            height: 100px;
+            border: 1px solid;
+        }
+        button {
+            margin: 10px;
+        }
+        
+        #container {
+            border: 1px solid;
+            height: 200px;
+            margin: 10px;
+        }
+        
+        .box {
+            height: 50px;
+            width: 50px;
+            border: 1px solid;
+            position: static;
+            /*top: 10px;
+            left: 10px;*/
+            margin-left: 10px;
+            margin-top: 10px;   
+            background: red;
+        }
+    </style>    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+</head>
+<body>    
+    <form id="target1" action="destination.html">
+      <input type="text" value="Hello there">
+      <input type="submit" value="Go">
+    </form>
+    <div id="other">
+      Trigger the handler
+    </div>
+    
+    <form>
+      <input class="target" type="text" value="Field 1">
+      <select class="target">
+        <option value="option1" selected="selected">Option 1</option>
+        <option value="option2">Option 2</option>
+      </select>
+    </form>    
+    <div id="other2">
+      Trigger the handler
+    </div>    
+    
+    <button>button</button>
+    <div>
+        <p>Click or double click here.</p>
+        <span></span>
+    </div>
+    
+    <div>test</div>
+    <script>
+        $(function(){
+            $("#target1").submit(function(event){
+                $('#other1').html("<mark>submited</mark>");     
+                event.preventDefault();
+            });
+            
+//            $(":input").change(function(event){
+//                $('#other2').html("<mark>"+$(event.target).val()+"</mark>");     
+//                event.preventDefault();
+//            });
+            
+            $("input").select(function(event){    
+                console.log(window.getSelection());
+                console.dir(event); 
+            });
+            $("input[type=text]").keyup(function(event){
+                $('#other2').html("<mark>"+$(event.target).val()+"</mark>");     
+                event.preventDefault();
+            });
+            
+            $("input").focusin(function(event){
+                $(this).css('border', '1px solid red').css("background", 'white');
+            });
+            
+            $("input").focusout(function(event){
+                $(this).css('border', '1px solid black').css("background", 'gray');
+            });
+            
+            var count = 0;
+            
+            $('button').on('click', function(e) {
+                $("#other2").text('button clicked: ' + count);                
+            });
+            
+//            $('p:last').bind("click contextmenu", function(e){
+//                $('span').html("<mark>event: " + e.type + "</mark>");
+//                e.preventDefault();
+//            });
+            
+            $('p:last').bind({
+                click: function(e) {
+                    $('span').text("event: " + e.type).css('background', 'blue');
+                },
+                dblclick: function(e) {
+                    $('span').text("event: " + e.type).css('background', 'red');
+                },
+                contextmenu: function(e) {
+                    $('span').text("event: " + e.type).css('background', 'gray');
+                }
+            });
+            
+            $('button').on('count', function(e){
+                count++;
+            });
+            
+            var timer = setInterval(function() {
+                $('button').trigger('count');
+                if(count >= 10) {
+                    clearInterval(timer);
+                }
+            }, 1000);
+            
+            $('div:last').toggle(function() {
+                    $(this).css('color', 'blue');
+                },
+                function() {
+                    $(this).css('color', 'red');
+                },
+                function() {
+                    $(this).css('color', 'black');
+                }
+            );
+            
+            
+        });
+    </script>
+</body>
+</html>

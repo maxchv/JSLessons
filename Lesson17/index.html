@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Drop and Down</title>
+    <style>
+        #drop {
+            width: 100px;
+            height: 100px;
+            padding: 0px;
+            border-radius: 8px;
+            border: 1px dotted #aaaaaa;
+            z-index: 10;
+            line-height: 100px;
+            text-align: center;
+            color: lightgray;
+        }
+        #drag {
+            z-index: -1;
+            display: block;
+        }
+        #file {
+            border: 1px solid black;
+            height: 100px;
+            width: 100px;
+        }
+    </style>
+    <script src="jquery-3.0.0.js"></script>
+</head>
+
+<body>
+    <div id="drop">drop here</div>
+    <img id="drag" src="logo.png" draggable="true" width="100" height="100">
+    <div id="file"></div>
+    <script>
+        (function () {
+            $('#drag').on('dragstart', function(e){
+                console.log('dragstart for ' + this.id);
+                var dt = e.originalEvent.dataTransfer;
+                dt.setData('text/plain', this.id);
+            });
+            
+            $('#drop').bind({
+                dragenter: function(e){
+                    //console.log('dragenter');
+                    e.preventDefault();
+                },
+                dragover: function(e){
+                    //console.log('dragover');
+                    e.preventDefault();
+                },
+                drop: function(e) {
+                    e.preventDefault();
+                    console.log('drop');
+                    var dt = e.originalEvent.dataTransfer;
+                    var data = dt.getData('text');
+                    console.log('data: ' + data);
+                    var id = '#' + data;
+                    $(this).empty
+                    $(this).append($(id));                    
+                }
+            });
+            
+            
+            $('#file').on('dragover', function(e) {
+                e.preventDefault();              
+            });
+            
+            $('#file').on('drop',function(e){
+                e.preventDefault();
+                console.log('drop file');
+                var dt = e.originalEvent.dataTransfer;
+                if(dt.files && dt.files.length > 0) {
+                    var reader = new FileReader();
+                    var self = this;
+                    reader.addEventListener('load', function(ev){
+                        $(self).text(ev.target.result);
+                    });
+                    reader.readAsText(dt.files[0]);
+                }                
+            });
+            
+            
+        })();
+    </script>
+
+</body>
+
+</html>
