@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+    <style>
+        table, td {
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        table {
+            width: 500px;
+            margin: 50px auto;
+            border-collapse: collapse;
+        }
+
+        * {
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+
+<table>
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>One</td>
+        <td>Two</td>
+        <td>Three</td>
+    </tr>
+    <tr>
+        <td>Один</td>
+        <td>Два</td>
+        <td>Три</td>
+    </tr>
+    <tr>
+        <td>Un</td>
+        <td>Deus</td>
+        <td>Trois</td>
+    </tr>
+    <tr>
+        <td>Uno</td>
+        <td>Dos</td>
+        <td>Tres</td>
+    </tr>
+    <tr>
+        <td>Eins</td>
+        <td>Zwei</td>
+        <td>Drei</td>
+    </tr>
+</table>
+
+<a href="http://itstep.dp.ua">Go</a>
+
+<script>
+    var a = document.querySelector("a");
+    var event = new Event('click');
+
+    a.addEventListener('click', function (event) {
+        console.log(event);
+        if(!confirm("Вы хотите перейти по ссылке?")) {
+            event.preventDefault();
+        }
+    });
+    screen.
+    a.scrollIntoView()
+    a.dispatchEvent(event);
+
+    var table = document.querySelector("table");
+    var all_tr = document.querySelectorAll("tr");
+    for (let i = 0; i < all_tr.length; i++) {
+        all_tr[i].addEventListener('mouseover', function (event) {
+            this.style.backgroundColor = "lightblue";
+        });
+    }
+    for (let i = 0; i < all_tr.length; i++) {
+        all_tr[i].addEventListener('mouseout', function (event) {
+            this.style.backgroundColor = "rgba(0,0,0,0)";
+        });
+    }
+    table.addEventListener('mouseover', function (event) {
+        console.log(event);
+
+        if (event.target.nodeName == 'TD') {
+            event.target.style.backgroundColor = "gray";
+        } else {
+            console.log(event.target.nodeName);
+        }
+    }, false);
+    table.addEventListener('mouseout', function (event) {
+        //console.log(event);
+        if (event.target.nodeName == 'TD') {
+            event.target.style.backgroundColor = "rgba(0,0,0,0)";
+            //event.target.setAttribute('contenteditable','false');
+        } else {
+            console.log(event.target.nodeName);
+        }
+    }, false);
+
+    table.addEventListener('dblclick', function (event) {
+        if (event.target.nodeName == 'TD') {
+            //event.target.style.backgroundColor = "yellow";
+            alert(event.target.innerHTML);
+            //event.target.setAttribute('contenteditable','true');
+        }
+    })
+</script>
+</body>
+</html>
