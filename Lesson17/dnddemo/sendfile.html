@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drag N Drop file </title>
+    <style>
+        #dropzone {
+            height: 150px;
+            width: 500px;
+            margin: 50px auto;
+            border: 1px solid black;
+            text-align: center;
+            line-height: 150px;
+        }
+    </style>
+</head>
+<body>
+<div id="dropzone">Drop Zone</div>
+<script>
+    (function () {
+        let dropzone = document.getElementById('dropzone');
+        dropzone.addEventListener("dragover", function (e) {
+            e.preventDefault();
+        });
+        dropzone.addEventListener("dragenter", function (e) {
+            e.preventDefault();
+            this.innerHTML = "Drop files here";
+        });
+        dropzone.addEventListener("drop", function (e) {
+            e.preventDefault();
+            if(e.dataTransfer.items) {
+                let items = e.dataTransfer.items;
+                this.innerHTML = "Dropped files: ";
+                for(let i=0; i<items.length; i++) {
+                    let file = items[i].getAsFile();
+                    this.innerHTML += file.name + " ";
+                }
+            }
+        });
+    })();
+</script>
+</body>
+</html>
