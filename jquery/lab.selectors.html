@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Практика jQuery Селекторы</title>
+    <link rel="stylesheet" href="./css/main.css"/>
+    <style>
+        #box-results > div {
+            margin-bottom: 1em;
+        }
+
+        #jquery-statement,
+        #resulting-elements-count {
+            font-weight: bold;
+        }
+
+        .found-element {
+            outline: 2px solid #ff0000;
+            border: 2px solid #cc0000;
+            background-color: #DDDDDD;
+        }
+
+        #sample-dom-source {
+            max-height: 40em;
+        }
+
+        .task {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        .task h2 {
+            padding: 0;
+            margin: 0;
+        }
+
+        #main {
+            position: relative;
+        }
+    </style>
+
+
+    <link rel="stylesheet"
+          href="http://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.12.0/build/styles/vs.min.css">
+    <script src="http://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.12.0/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<body>
+<h1 class="header">Практика jQuery селекторы</h1>
+<div id="main">
+    <div class="box-small">
+        <h2>Селекторы</h2>
+        <form id="box-selector">
+            <p>Введите селектор в текстовое поле ввода и нажмите на кнопку Вполнить.</p>
+
+            <label for="selector">Селектор:</label>
+            <input type="text" id="selector"/>
+
+            <input type="submit" id="button-apply" value="Выполнить"/>
+        </form>
+
+        <div id="box-results">
+            <div>
+                <span>jQuery выражение:</span>
+                <span id="jquery-statement"></span>
+            </div>
+            <div>
+                Выбрано <span id="resulting-elements-count">0</span> элементов:
+                <div id="resulting-elements"></div>
+            </div>
+        </div>
+    </div>
+    <div class="box-small task">
+        <h2>Задание</h2>
+        <ol>
+            <li>Найти все ссылки в первом списке</li>
+            <li>Найти первую и последнюю ссылки в первом списке</li>
+            <li>Найти все четные/нечетные строки таблицы</li>
+            <li>Найти каждый второй элемент списка</li>
+            <li>Найти все отмеченные чекбоксы</li>
+            <li>Найти не отмеченные радиокнопки</li>
+        </ol>
+    </div>
+    <div class="box-small">
+        <h2>Исходная страница</h2>
+        <div id="sample-dom">
+            <h2>Изображения:</h2>
+            <div>
+                <img src="./images/image.1.jpg" id="hibiscus" alt="Hibiscus"/>
+                <img src="./images/image.2.jpg" id="little-bear" title="A dog named Little Bear"/>
+                <img src="./images/image.3.jpg" id="verbena" alt="Verbena"/>
+                <img src="./images/image.4.jpg" id="cozmo" title="A puppy named Cozmo"/>
+                <img src="./images/image.5.jpg" id="tiger-lily" alt="Tiger Lily"/>
+                <img src="./images/image.6.jpg" id="coffee-pot"/>
+            </div>
+
+            <div id="some-div">Это &lt;div&gt; элемент с id code>some-div</code></div>
+
+            <h2>Привет, это &lt;h2&gt; элемент</h2>
+            <p>
+                Это параграф, рад тебя видеть.
+            </p>
+
+            <ul class="my-list">
+                <li>
+                    <a href="http://jquery.com">jQuery веб-сайт</a>
+                    <ul>
+                        <li><a href="#css1">CSS1</a></li>
+                        <li><a href="#css2">CSS2</a></li>
+                        <li><a href="#css3">CSS3</a></li>
+                        <li>XPath</li>
+                    </ul>
+                </li>
+                <li>
+                    jQuery также поддерживает
+                    <ul>
+                        <li>Дополнительные селекторы</li>
+                        <li>Селекторы форм</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <table id="languages">
+                <thead>
+                <tr>
+                    <th>Язык</th>
+                    <th>Типизация</th>
+                    <th>Появился</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Java</td>
+                    <td>Статическая</td>
+                    <td>1995</td>
+                </tr>
+                <tr>
+                    <td>Ruby</td>
+                    <td>Динамическая</td>
+                    <td>1993</td>
+                </tr>
+                <tr>
+                    <td>Smalltalk</td>
+                    <td>Динамическая</td>
+                    <td>1972</td>
+                </tr>
+                <tr>
+                    <td>C++</td>
+                    <td>Статическая</td>
+                    <td>1983</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <form id="form-fake" action="#">
+                <div>
+                    <label for="aTextField">Текст:</label>
+                    <input type="text" id="aTextField" name="someTextField"/>
+                </div>
+                <div>
+                    <span>Радио кнопки:</span>
+                    <label><input type="radio" name="radio-group" id="radio-a" value="A"/> A</label>
+                    <label><input type="radio" name="radio-group" id="radio-b" value="B" checked="checked"/> B</label>
+                    <label><input type="radio" name="radio-group" id="radio-c" value="C"/> C</label>
+                </div>
+                <div>
+                    <span>Флажки:</span>
+                    <label><input type="checkbox" name="checkboxes" id="checkbox-1" value="1"/> 1</label>
+                    <label><input type="checkbox" name="checkboxes" id="checkbox-2" value="2"/> 2</label>
+                    <label><input type="checkbox" name="checkboxes" id="checkbox-3" value="3" checked="checked"/>
+                        3</label>
+                    <label><input type="checkbox" name="checkboxes" id="checkbox-4" value="4"/> 4</label>
+                </div>
+                <input type="submit" id="button-submit" value="Submit"/>
+            </form>
+        </div>
+    </div>
+
+</div>
+<div>
+    <h2>DOM</h2>
+    <pre id="sample-dom-source">
+			<code class="html"></code>
+         </pre>
+</div>
+
+<div class="footer">
+    <p>
+        Практика jQuery селекторы<br/>
+
+    </p>
+</div>
+
+<script src="./js/jquery-1.11.3.min.js"></script>
+<script>
+    $('#sample-dom-source code').text($('#sample-dom').html());
+
+    $('#button-apply').click(function (event) {
+        event.preventDefault();
+
+        // Clear old data
+        $('.found-element', '#sample-dom').removeClass('found-element');
+        $('#resulting-elements').html('');
+
+        // Retrieve the selector
+        var selector = $.trim($('#selector').val());
+
+        // Retrieve the matching elements
+        var $set = $(selector, '#sample-dom');
+        $set.addClass('found-element');
+
+        // Output the results
+        $('#jquery-statement').html('$("' + selector + '").addClass("found-element");');
+        $('#resulting-elements-count').text($set.length);
+        $set.each(function () {
+            $('#resulting-elements').append(
+                    '<div>' + this.tagName + (this.id ? '#' + this.id : '') + '</div>'
+            );
+        });
+    });
+</script>
+</body>
+</html>
