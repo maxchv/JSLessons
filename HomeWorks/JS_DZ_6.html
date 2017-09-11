@@ -1,0 +1,55 @@
+﻿<!document html>
+<html>
+	<head>
+		<title>JavaScript Example HomeWork #06</title>
+		<meta charset="utf8"/>
+		<style>
+			p {
+				font-size: 25px;
+			}
+			#clock {
+				text-align: center;
+				width: 150px;
+				border: 1px solid black;
+				font-family: courier;
+				font-size: 25px;
+			}
+			#clock-control > input {				
+				font-size: 20px;
+				font-family: courier;
+			}
+		</style>
+		
+		<script>
+			window.addEventListener('load', function(){
+				var now = new Date();
+				var isSetAlarm = true;
+				var text = prompt("Задайте будильник в формате мм:чч:сс\nТекущее время: " + now.toLocaleTimeString() , now.toLocaleTimeString());				
+				var timeAlarm = new Date(now.getFullYear(), now.getMonth(), now.getDate(), text.split(':')[0], text.split(':')[1], text.split(':')[2], 0); 
+				if(now > timeAlarm) {
+					isSetAlarm = false;
+				}				
+				var clock = document.getElementsByTagName('time')[0];
+				setInterval(function(){
+					var date = new Date();					 
+					clock.innerHTML = date.toLocaleTimeString();
+					if(date > timeAlarm && isSetAlarm) {
+						alert('Звонок');
+						isSetAlarm = false;
+					}
+					console.log(date  + ' ' + timeAlarm);
+				}, 1000);				
+			});
+		</script>
+	</head>
+		
+	<body>
+		<h1>Будильник</h1>
+		<p>
+		Текущее время
+		</p>
+		<div id="clock">			
+			<time></time>
+		</div>		
+	</body>
+</html>

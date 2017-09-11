@@ -1,0 +1,70 @@
+﻿<!document html>
+<html>
+	<head>
+		<title>JavaScript Example</title>
+		<meta charset="utf8"/>
+		<style>
+		h1{
+			/*text-align: center;*/
+		}
+		.label {
+			float: left;
+			width: 80px;
+		}
+		
+		.field {
+			
+		}
+		
+		#fio, #phone {
+			/*background: LightBlue;*/
+			font-family: sans-serif;			
+			width: 300px;
+		}
+		
+		#age, #email {
+			//*background: Aquamarine;*/
+			font-family: sans-serif;
+			width: 300px;
+		}
+		
+		#submit {
+			margin-top: 10px;
+			margin-left: 270px;			
+		}
+		#submit > input {
+			
+		}
+		</style>
+	</head>
+		
+	<body>
+		<h1>Анкета пользователя</h1>
+		
+		<form>
+		<div>
+			<label for="fio" class="label">ФИО:</label>
+			<input type="text" class="field" name="fio" id="fio">
+		</div>
+		<div>
+			<label for="age" class="label">Возраст:</label>
+			<input type="text" id="age" class="field">
+		</div>
+		<div>
+			<label for="phone" class="label">Телефон:</label>
+			<input type="phone" name="phone" id="phone" class="field">
+		</div>
+		<div>
+			<label for="email" class="label">Email:</label>
+			<input type="email" name="email" id="email" class="field">
+		</div>
+		<div>
+			<input type="checkbox" checked >
+			<label for="email">С политикой конфиденциальности ознакомлен</label>			
+		</div>
+		<div id="submit">
+			<input type="submit" disabled value="Регистрация" >
+		</div>
+		</form>
+	</body>
+</html>
