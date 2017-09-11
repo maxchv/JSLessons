@@ -38,6 +38,18 @@
         #main {
             position: relative;
         }
+		
+		#resulting-elements {
+			height: 245px;
+			overflow-y: auto;
+		}
+		
+		span {
+			vertical-align: top;
+		}
+		form {
+			padding: 8px;
+		}
     </style>
 
 
@@ -83,6 +95,7 @@
             <li>Найти второй элемент каждого списка</li>
             <li>Найти все отмеченные чекбоксы</li>
             <li>Найти не отмеченные радиокнопки</li>
+			<li>Найти все выбранные месяцы</li>
         </ol>
     </div>
     <div class="box-small">
@@ -175,7 +188,17 @@
                         3</label>
                     <label><input type="checkbox" name="checkboxes" id="checkbox-4" value="4"/> 4</label>
                 </div>
+				<div>
+					<span>Множественный выбор:</span>
+					<select name='select-1' multiple>
+						<option>Январь</option>
+						<option>Февраль</option>
+						<option>Март</option>
+						<option>Июнь</option>
+					</select>					
+				</div>
                 <input type="submit" id="button-submit" value="Submit"/>
+				<input type="reset" id="button-reset" value="Reset"/>
             </form>
         </div>
     </div>
