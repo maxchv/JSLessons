@@ -141,12 +141,12 @@
          <label>
             <input type="radio" name="speed" value="custom" id="custom-speed"/> Миллисекунды:
          </label>
-         <input type="text" name="speed-value" id="speed-value" disabled="disabled"/>
+         <input type="number" min="0" max="10000" step="100" name="speed-value" id="speed-value"/>
       </div>
 
       <div class="panel panel-opacity box">
          <h3>Прозрачность</h3>
-         <input type="text" name="opacity" id="opacity" disabled="disabled"/> (0.0 - 1.0, для "Fade to")
+         <input type="number" max="1" min="0" step="0.1" name="opacity" id="opacity" /> (0.0 - 1.0, для "Fade to")
       </div>
 
       <button id="button-apply">Применить</button>
@@ -217,16 +217,23 @@
          }
       });
 
-      $('input', '.panel-speed').click(function() {
-         $('#speed-value').prop('disabled', !$('#custom-speed').is(':checked'));
-      });
+	  function showTime() {
+		 $('#custom-speed').is(':checked') ? $('#speed-value').show().animate({width: "140px"}, "slow") : $('#speed-value').animate({width: "0"}, 'slow', 'linear', function() { $(this).hide(); });
+      }
+	  
+      $('input', '.panel-speed').click(showTime);
 
-      $('input', '.panel-effects').click(function() {
-         $('#opacity').prop('disabled', !$('input[value="fadeTo"]').is(':checked'));
-      });
+	  function showOpacity() {
+		 var opacity = $('#opacity').parent();
+		 $('input[value="fadeTo"]').is(':checked') ? opacity.slideDown('slow') : opacity.slideUp('slow');
+      }
+	  
+      $('input', '.panel-effects').click(showOpacity);
 
       $testSubjects.slice(2).hide();
       $testSubjects.filter(':nth-child(4)').css('opacity', 0.5);
+	  showOpacity();
+	  showTime();
    </script>
 </body>
 </html>
