@@ -1,239 +1,257 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <meta charset="utf-8" />
-   <title>jQuery анимация</title>
-   <link rel="stylesheet" href="./css/main.css"/>
-   <style>
-      h2,
-      h3
-      {
-         margin: 0.2em 0;
-      }
+    <meta charset="utf-8"/>
+    <title>jQuery анимация</title>
+    <link rel="stylesheet" href="./css/main.css"/>
+    <style>
+        h2,
+        h3 {
+            margin: 0.2em 0;
+        }
 
-      label
-      {
-         margin-right: 0.5em;
-      }
+        label {
+            margin-right: 0.5em;
+        }
 
-      .panel,
-      .test-subjects
-      {
-         margin: 0.5em 0;
-      }
+        .panel,
+        .test-subjects {
+            margin: 0.5em 0;
+            padding: 0.5em;
+        }
 
-      .panel-effects ul
-      {
-         margin: 0;
-         padding: 0;
-         list-style: none;
-         clear: both;
-      }
+        .panel-effects ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            clear: both;
+        }
 
-      .panel-effects li
-      {
-         float: left;
-      }
+        .panel-effects li {
+            float: left;
+        }
 
-      .test-subject
-      {
-         width: 120px;
-         height: 120px;
-         float: left;
-         border: 1px #000000 solid;
-         margin-right: 1em;
-      }
+        .test-subject {
+            width: 120px;
+            height: 120px;
+            float: left;
+            border: 1px #000000 solid;
+            margin-right: 1em;
+        }
 
-      #command
-      {
-         color: #800706;
-      }
+        #command {
+            color: #800706;
+        }
 
-      input[type="radio"]
-      {
-         vertical-align: baseline;
-      }
-   </style>
+        input[type="radio"] {
+            vertical-align: baseline;
+        }
+    </style>
+    <link rel="stylesheet"
+          href="http://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.12.0/build/styles/vs.min.css">
+    <script src="http://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.12.0/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 </head>
 
 <body>
-   <h1 class="header">jQuery анимация</h1>
+<h1 class="header">jQuery анимация</h1>
 
-   <div class="box">
-      <h2>Настройки</h2>
+<div class="box">
+    <h2>Настройки</h2>
 
-      <div class="panel panel-effects box clearfix">
-         <h3>Эффекты</h3>
+    <div class="panel panel-effects box clearfix">
+        <h3>Эффекты</h3>
 
-         <ul>
+        <ul>
             <li>
 
-               <label>
-                  <input type="radio" name="effect" value="show" checked="checked"/> Show
-               </label>
+                <label>
+                    <input type="radio" name="effect" value="show" checked="checked"/> Show
+                </label>
             </li>
             <li>
-               <label>
-                  <input type="radio" name="effect" value="hide"/> Hide
-               </label>
+                <label>
+                    <input type="radio" name="effect" value="hide"/> Hide
+                </label>
             </li>
             <li>
-               <label>
-                  <input type="radio" name="effect" value="toggle"/> Toggle
-               </label>
+                <label>
+                    <input type="radio" name="effect" value="toggle"/> Toggle
+                </label>
             </li>
-         </ul>
-         <ul>
+        </ul>
+        <ul>
             <li>
-               <label>
-                  <input type="radio" name="effect" value="fadeIn"/> Fade In
-               </label>
-            </li>
-            <li>
-               <label>
-                  <input type="radio" name="effect" value="fadeOut"/> Fade Out
-               </label>
+                <label>
+                    <input type="radio" name="effect" value="fadeIn"/> Fade In
+                </label>
             </li>
             <li>
-               <label>
-                  <input type="radio" name="effect" value="fadeToggle"/> Fade Toggle
-               </label>
+                <label>
+                    <input type="radio" name="effect" value="fadeOut"/> Fade Out
+                </label>
             </li>
             <li>
-               <label>
-                  <input type="radio" name="effect" value="fadeTo"/> Fade To
-               </label>
-         </ul>
-         <ul>
-            <li>
-               <label>
-                  <input type="radio" name="effect" value="slideDown"/> Slide Down
-               </label>
+                <label>
+                    <input type="radio" name="effect" value="fadeToggle"/> Fade Toggle
+                </label>
             </li>
             <li>
-               <label>
-                  <input type="radio" name="effect" value="slideUp"/> Slide Up
-               </label>
+                <label>
+                    <input type="radio" name="effect" value="fadeTo"/> Fade To
+                </label>
+        </ul>
+        <ul>
+            <li>
+                <label>
+                    <input type="radio" name="effect" value="slideDown"/> Slide Down
+                </label>
             </li>
             <li>
-               <label>
-                  <input type="radio" name="effect" value="slideToggle"/> Slide Toggle
-               </label>
+                <label>
+                    <input type="radio" name="effect" value="slideUp"/> Slide Up
+                </label>
             </li>
-         </ul>
-      </div>
+            <li>
+                <label>
+                    <input type="radio" name="effect" value="slideToggle"/> Slide Toggle
+                </label>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <label>
+                    <input type="radio" name="effect" value="animate"/> Animate
+                </label>
+            </li>
+        </ul>
+    </div>
+    <div class="panel panel-opacity box">
+        <h3>Прозрачность</h3>
+        <input type="number" max="1" min="0" step="0.1" name="opacity" id="opacity"/> (0.0 - 1.0, для "Fade to")
+    </div>
+    <div class="panel panel-speed box">
+        <h3>Анимация свойств</h3>
+        <code id="animate" class="javascript">
+            <label>
+                <textarea  cols="50" rows="8">{
+    marginLeft: "+=100px",
+    width: "+=5px"
+}</textarea>
+            </label>
+        </code>
+    </div>
 
-      <div class="panel panel-speed box">
-         <h3>Скорость</h3>
+    <div class="panel panel-speed box">
+        <h3>Скорость</h3>
 
-         <label>
+        <label>
             <input type="radio" name="speed" value="none" checked="checked"/> None
-         </label>
-         <label>
+        </label>
+        <label>
             <input type="radio" name="speed" value="slow"/> Slow
-         </label>
-         <label>
+        </label>
+        <label>
             <input type="radio" name="speed" value="normal"/> Normal
-         </label>
-         <label>
+        </label>
+        <label>
             <input type="radio" name="speed" value="fast"/> Fast
-         </label>
-         <label>
+        </label>
+        <label>
             <input type="radio" name="speed" value="custom" id="custom-speed"/> Миллисекунды:
-         </label>
-         <input type="number" min="0" max="10000" step="100" name="speed-value" id="speed-value"/>
-      </div>
+        </label>
+        <input type="number" min="0" max="10000" step="100" name="speed-value" id="speed-value"/>
+    </div>
 
-      <div class="panel panel-opacity box">
-         <h3>Прозрачность</h3>
-         <input type="number" max="1" min="0" step="0.1" name="opacity" id="opacity" /> (0.0 - 1.0, для "Fade to")
-      </div>
+    <button id="button-apply">Применить</button>
 
-      <button id="button-apply">Применить</button>
+    <div id="command-wrapper" class="panel box">
+        <h3>Команда</h3>
+        <code id="command"></code>
+    </div>
+</div>
 
-      <div id="command-wrapper" class="panel box">
-         <h3>Команда</h3>
-         <code id="command"></code>
-      </div>
-   </div>
+<div class="panel box">
+    <h2>Тест</h2>
 
-   <div class="panel box">
-      <h2>Тест</h2>
+    <div class="test-subjects clearfix">
+        <div class="test-subject">This is a test subject &lt;div&gt; element that starts out displayed.</div>
+        <div class="test-subject"><img src="images/image.1.jpg" alt=""/></div>
+        <div class="test-subject">This is a test subject &lt;div&gt; element that starts out hidden.</div>
+        <div class="test-subject"><img src="images/image.2.jpg" alt=""/></div>
+    </div>
 
-      <div class="test-subjects clearfix">
-         <div class="test-subject">This is a test subject &lt;div&gt; element that starts out displayed.</div>
-         <div class="test-subject"><img src="images/limes.png" alt=""/></div>
-         <div class="test-subject">This is a test subject &lt;div&gt; element that starts out hidden.</div>
-         <div class="test-subject"><img src="images/belt.png" alt=""/></div>
-      </div>
+</div>
 
-   </div>
+<script src="./js/jquery-1.11.3.min.js"></script>
+<script>
+    function showCommand(effect, speed, opacity) {
+        var text = '$(".test-subject").' + effect + '(';
 
-   <script src="./js/jquery-1.11.3.min.js"></script>
-   <script>
-      function showCommand(effect, speed, opacity) {
-         var text = '$(".test-subject").' + effect + '(';
-
-         if (speed !== undefined) {
+        if (speed !== undefined) {
             text += ((typeof speed === 'string') ? '"' : '') + speed + ((typeof speed === 'string') ? '"' : '');
-         }
-         if (opacity){
+        }
+        if (opacity) {
             text += ', ' + opacity;
-         }
-         text += ');';
+        }
+        text += ');';
 
-         $('#command').html(text);
-      }
+        $('#command').html(text);
+    }
 
-      var $testSubjects = $('.test-subject');
+    var $testSubjects = $('.test-subject');
 
-      $('#button-apply').click(function () {
-         var effect = $('input:radio:checked', '.panel-effects').val();
-         var speed = $('input:radio:checked', '.panel-speed').val();
+    $('#button-apply').click(function () {
+        var effect = $('input:radio:checked', '.panel-effects').val();
+        var speed = $('input:radio:checked', '.panel-speed').val();
 
-         if (speed === 'custom') {
+        if (speed === 'custom') {
             speed = parseInt($('#speed-value').val());
             if (isNaN(speed) || speed < 0) {
-               speed = 'normal';
+                speed = 'normal';
             }
-         }
+        }
 
-         var opacity = parseFloat($('#opacity').val());
-         if ((effect === 'show' || effect === 'hide' || effect === 'toggle') && speed === 'none') {
+        var opacity = parseFloat($('#opacity').val());
+        if ((effect === 'show' || effect === 'hide' || effect === 'toggle') && speed === 'none') {
             showCommand(effect);
             $testSubjects[effect]();
-         } else if (effect === 'fadeTo') {
+        } else if (effect === 'fadeTo') {
             if (speed === 'none') {
-               speed = 'normal';
+                speed = 'normal';
             }
             showCommand(effect, speed, opacity);
             $testSubjects[effect](speed, opacity);
-         } else {
+        } else {
             if (speed === 'none') {
-               speed = 'normal';
+                speed = 'normal';
             }
             showCommand(effect, speed);
             $testSubjects[effect](speed);
-         }
-      });
+        }
+    });
 
-	  function showTime() {
-		 $('#custom-speed').is(':checked') ? $('#speed-value').show().animate({width: "140px"}, "slow") : $('#speed-value').animate({width: "0"}, 'slow', 'linear', function() { $(this).hide(); });
-      }
-	  
-      $('input', '.panel-speed').click(showTime);
+    function showTime() {
+        $('#custom-speed').is(':checked') ? $('#speed-value').show().animate({width: "140px"}, "slow") : $('#speed-value').animate({width: "0"}, 'slow', 'linear', function () {
+            $(this).hide();
+        });
+    }
 
-	  function showOpacity() {
-		 var opacity = $('#opacity').parent();
-		 $('input[value="fadeTo"]').is(':checked') ? opacity.slideDown('slow') : opacity.slideUp('slow');
-      }
-	  
-      $('input', '.panel-effects').click(showOpacity);
+    $('input', '.panel-speed').click(showTime);
 
-      $testSubjects.slice(2).hide();
-      $testSubjects.filter(':nth-child(4)').css('opacity', 0.5);
-	  showOpacity();
-	  showTime();
-   </script>
+    function showOpacity() {
+        var opacity = $('#opacity').parent();
+        var animate = $('#animate').parent();
+        $('input[value="fadeTo"]').is(':checked') ? opacity.slideDown('slow') : opacity.slideUp('slow');
+        $('input[value=animate]').is(':checked') ? animate.slideDown('slow') : animate.slideUp('slow');
+    }
+
+    $('input', '.panel-effects').click(showOpacity);
+
+    $testSubjects.slice(2).hide();
+    $testSubjects.filter(':nth-child(4)').css('opacity', 0.5);
+    showOpacity();
+    showTime();
+</script>
 </body>
 </html>
