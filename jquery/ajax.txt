@@ -1,0 +1,4 @@
+flickr api:
+	http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?&format=xml&tagmode=any&tag=ukraine
+google translate api:
+	https://translation.googleapis.com/language/translate/v2?q="+text+"&source=en&target=ru&key=AIzaSyCbQaZKjBMMNjk_NpKHV6_z1lQ8s4gnSjI
