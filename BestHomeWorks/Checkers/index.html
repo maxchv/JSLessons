@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkers</title>
+    <style>
+        #field{
+            width: 680px;
+            height: 680px;
+            margin: 5% auto;
+            padding: 0;
+        }
+        .childField{
+            width: 83px;
+            height: 83px;
+            display: block;
+            margin: 0;
+            padding: 0;
+            float: left;
+            border: 1px solid black;
+        }
+        .checker{
+            width: 83px;
+            height: 83px;
+            cursor: pointer;
+            background-clip: border-box;
+            background-origin: border-box;
+            background-size: cover;
+        }
+        .rightMove{
+            background-color: rgba(43,244,56,0.44);
+            width: 83px;
+            height: 83px;
+            display: block;
+            margin: 0;
+            padding: 0;
+            z-index: 1000;
+            border: none;
+        }
+        .beatMove{
+            background-color: rgba(244, 27, 11, 0.44);
+            width: 83px;
+            height: 83px;
+            display: block;
+            margin: 0;
+            padding: 0;
+            z-index: 1000;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<div id="field">
+</div>
+<script src="script.js"></script>
+</body>
+</html>
