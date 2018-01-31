@@ -1,6 +1,6 @@
 QUnit.test( "Задание 1. Написать функцию isPalindrom(str)", function( assert ) {
 	assert.equal(isPalindrom('madam'), true , "Это должен быть палиндром!" );
-	assert.equal(isPalindrom('mama'), true , "Это не палиндром!" );
+	assert.equal(isPalindrom('mama'), false , "Это не палиндром!" );
 });
 
 QUnit.test( "Задание 2. Напишите функцию ucFirst(str)", function( assert ) {
