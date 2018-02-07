@@ -6,6 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1.0">
     <style>
+        body {
+            overflow: hidden;
+        }
         img {
             width: 100px;
         }
@@ -16,46 +19,82 @@
 
     <img src="img/car_right.jpg" alt="car" />
     <br/>
+    <img src="img/car_right.jpg" alt="car" />
+    <br/>
     <button>Run</button>
     <script>
         (function() {
-            function car(elem) {
-                this.img = elem;
-                this.updateTime = 1000; // ms
-                this.speed = 10; // px
-                this.distance = "0px";
-                this.imgSrcToLeft = "img/car_left.jpeg";
-                this.imgSrcToRight = "img/car_right.jpeg";
+            function Car(elem) {                
+                this.init(elem);
             };
 
-            car.prototype.drive = function() {
-                let bodyWidth = document.body.clientWidth;
-                if (this.elem.src == this.imgSrcToLeft) {
-                    if(this.img.marginLeft + this.img.width < bodyWidth) {
-                        this.distance = (parseInt(this.distance) 
-                                        + this.speed) + "px";
-                        this.img.marginLef = this.distance;
-                    }
-                }
+            Car.prototype.init = function(elem) {
+                this.img = elem;
+                this.updateTime = 1000/60; // ms
+                this.speed = 5; // px
+                this.distance = "0px";
+                this.imgSrcToLeft = "img/car_left.jpg";
+                this.imgSrcToRight = "img/car_right.jpg";
+                
+                this.img.setAttribute("src", this.imgSrcToRight);                                
+                this.img.style.marginLeft = this.distance;
             }
-
-            car.prototype.start = function() {
+           
+            Car.prototype.start = function() {
                 if (this.nInterval) {
                     this.stop();
                 }
-                this.nInterval = setInterval(this.drive, this.updateTime);
+                
+                function move(_eval) {
+                    this.distance = _eval(parseInt(this.distance), this.speed) + "px";
+                    this.img.style.marginLeft = this.distance;
+                }
+                
+                function imageToggle() {
+                    if(this.img.src.indexOf(this.imgSrcToRight) >= 0) {
+                        this.img.src = this.imgSrcToLeft;
+                    } else {
+                        this.img.src = this.imgSrcToRight;
+                    }
+                }
+                
+                var drive = function() {
+                    let bodyWidth = document.body.clientWidth;
+                    let left = parseInt(this.distance || 0);
+                    let right = left + this.img.width;
+                    
+                    if (this.img.src.indexOf(this.imgSrcToRight) >= 0) {                        
+                        if(right < bodyWidth) {
+                            move.call(this, (a, b) => a + b);
+                        } else {
+                            imageToggle.call(this);
+                        }
+                    } else {
+                        if(left > 0) {
+                            move.call(this, (a, b) => a - b);
+                        } else {
+                            imageToggle.call(this);
+                        }
+                    }
+                }.bind(this);
+                
+                this.nInterval = setInterval(drive, this.updateTime);
             }
-
-            car.prototype.stop = function() {
+                    
+            Car.prototype.stop = function() {
                 if (this.nInterval) {
                     clearInterval(this.nInterval);
                     this.nInterval = undefined;
                 }
             }
             
+            var auto = new Car(document.querySelector("img"));
+            var auto2 = new Car(document.querySelector("img:nth-of-type(2)"));
+            
             document.querySelector("button")
                     .onclick = function() {
-                  
+                auto.start();
+                setTimeout(() => { auto2.start()}, 100);
             };
 
 
