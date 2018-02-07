@@ -1,0 +1,65 @@
+<!doctype html>
+
+<html>
+	<head>
+    <title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+    <style>
+        img {
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <img src="img/car_right.jpg" alt="car" />
+    <br/>
+    <button>Run</button>
+    <script>
+        (function() {
+            function car(elem) {
+                this.img = elem;
+                this.updateTime = 1000; // ms
+                this.speed = 10; // px
+                this.distance = "0px";
+                this.imgSrcToLeft = "img/car_left.jpeg";
+                this.imgSrcToRight = "img/car_right.jpeg";
+            };
+
+            car.prototype.drive = function() {
+                let bodyWidth = document.body.clientWidth;
+                if (this.elem.src == this.imgSrcToLeft) {
+                    if(this.img.marginLeft + this.img.width < bodyWidth) {
+                        this.distance = (parseInt(this.distance) 
+                                        + this.speed) + "px";
+                        this.img.marginLef = this.distance;
+                    }
+                }
+            }
+
+            car.prototype.start = function() {
+                if (this.nInterval) {
+                    this.stop();
+                }
+                this.nInterval = setInterval(this.drive, this.updateTime);
+            }
+
+            car.prototype.stop = function() {
+                if (this.nInterval) {
+                    clearInterval(this.nInterval);
+                    this.nInterval = undefined;
+                }
+            }
+            
+            document.querySelector("button")
+                    .onclick = function() {
+                  
+            };
+
+
+        })();
+    </script>
+</body>
+</html>
