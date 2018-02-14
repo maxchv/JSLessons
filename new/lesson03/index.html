@@ -1,0 +1,113 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">    
+</head>
+
+<body>    
+    <script>
+        'use strict';
+        'esversion: 6';
+
+        let a = 100; {
+            let a;
+            a = 10;
+            document.writeln("a = " + a + "<br/>");
+        }
+        document.writeln("a = " + a);
+
+        const PI = 3.14;
+        document.write("<br/>");
+
+        function printf(fmt, ...args) {
+            if (fmt !== undefined) {
+                for (let i = 0; i < args.length; i++) {
+                    //document.writeln(i + ": " + args[i] + "<br/>");
+                    fmt = fmt.replace("{" + i + "}", args[i]);
+                }
+                document.write(fmt + "<br/>");
+                console.log(fmt.replace("<br/>", ""));
+            }
+        }
+
+        printf("Это первый аргумент: {1}, второй аргумент: {0} терий: {2}", "first", "second", 3);
+
+        let add;
+        add = (a, b) => a + b; // arrow function
+        // Function Expression
+        add = function(a, b) {
+            return a + b;
+        }
+        add = (a, b) => {
+            return a + b
+        };
+        printf("{0} + {1} = {2}", 2, 2, add(2, 2));
+
+    </script>
+    <h2>Arrays</h2>
+    <script>
+        let arr = [1, 2, "str", {}, [1,2],true, printf]; //new Array(1,2);
+        //arr[0] = 1;        
+        arr = [[1,2,3],[4,5,6],[7,8,9]];
+        printf("{0}", arr);
+        console.log(arr[0][0]);
+        
+        arr = [1,2,3,4,5];
+        printf("{0}<br/>", arr);
+        arr.length = 2;
+        printf("arr = {0} arr[5] = {1}", arr, arr[5]);
+        //arr[5] = 100;
+        printf("arr.lengt = {0}", arr.length);
+        printf("<h3>for</h3>");
+        for(let i=0; i<arr.length; i++) {
+            printf("{0}: {1}", i, arr[i]);
+        }
+        printf("<h3>for..in</h3>");
+        for(let i in arr) {
+            printf("{0}: {1}", i, arr[i]);
+        }
+        printf("<h3>for..of</h3>");
+        for(let item of arr) {
+            printf("{0}: {1}", arr.indexOf(item), item);
+        }
+        
+        arr = [1,2,1]; 
+        let idx = arr.indexOf(1);
+        printf("idx = {0}", idx)
+        printf("idx = {0}", arr.indexOf(1, idx+1));
+        printf("idx = {0}", arr.lastIndexOf(5));
+        arr.push(100);
+        printf("{0}", arr);
+        let last = arr.pop();
+        printf("{0}, last = {1}", arr, last);
+        arr = arr.concat([6,3,4]);
+        printf("{0}", arr);
+        arr.sort((a, b) => a < b);
+        printf("{0}", arr);
+        arr.reverse();
+        printf("{0}", arr);
+        
+        var slice = arr.slice(2, 4);
+        printf("{0}", slice);
+        var splice = arr.splice(2, 2, 1000, 2000, 3000);
+        printf("{0}", splice);
+        printf("{0}", arr);
+
+    </script>
+    <!--
+    <div>
+        <button onclick="foo('тыц')">Тыцни меня</button>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        printf(test);
+    </script>
+-->
+</body>
+
+</html>

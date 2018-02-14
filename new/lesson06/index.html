@@ -1,0 +1,98 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+</head>
+
+<body>
+    <script>
+        /*
+                        var elephan = new Object();
+                        elephan.fly = true;
+                        elephan['can eat'] = true;
+                        elephan[Math.random()] = Math.random();
+                        //console.dir(elephan);
+                        for(let prop in elephan) {
+                            document.writeln(prop + ": " + elephan[prop] + "<br/>");
+                        }
+                        */
+
+        function show() {
+            for (let prop in this) {
+                if (typeof(this[prop]) != "function") {
+                    document.writeln("" + prop + ": " + this[prop] + "<br/>");
+                }
+            }
+        }
+
+        function Elephant(name, age) {
+            let now = new Date();
+            
+            this.kind = "Elephan";
+            this.name = name;
+            this.age = age;
+            this.show = show;
+            
+            this.birthYear = function() {
+                return now.getFullYear() - this.age;
+            };
+        }
+        
+        Elephant.prototype.fly = false;
+        Elephant.prototype.jump = function() {
+            document.writeln(`<img src="https://media.tenor.com/images/84ce2ecf6503ebc015eda527a59878e3/tenor.gif" alt="jump" />`);
+        };
+        
+        var vaska = new Elephant("Васька", 50);
+        //vaska.fly = false;        
+        vaska.show();
+        document.writeln("Brith Year: " + vaska.birthYear());
+        //vaska.jump();
+
+        document.writeln("<hr/>");
+        var mashka = new Elephant("Машка", 35);
+        //delete mashka.age;
+        mashka.show();
+
+        document.writeln("<hr/>");
+        
+        Array.prototype.show = show;
+        var arr = ["one", 2, 3];
+        arr.join = function() {
+            console.log("join");
+            return Array.prototype.join.apply(this, arguments);
+        };
+        
+        //arr.show = show;
+        var res = arr.join();
+        console.log(res);
+        arr.show();
+        
+        document.writeln("<hr/>");
+        var arr2 = [ "test" ];
+        arr2.show();
+       
+        String.prototype.isValidEmail = function() {
+            //console.log(this);
+            return /\w+@\w+(\.\w+)+/.test(this);  
+        };
+        
+        console.log("mail".isValidEmail());
+        console.log("mail@mail.com".isValidEmail());
+        
+        String.prototype.toDate = function() {
+            let reDate = /(\d{2})([/-])(\d{2})\2(\d{4})/;
+            if(reDate.test(this.valueOf())) {
+                let m = this.match(reDate);
+                return new Date(Number(m[4]), Number(m[3]) - 1, Number(m[1]));
+            }
+        };
+        console.log("10/12/2001".toDate());
+    </script>
+</body>
+
+</html>

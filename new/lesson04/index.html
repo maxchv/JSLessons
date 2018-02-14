@@ -1,0 +1,67 @@
+<!doctype html>
+
+<html>
+	<head>
+    <title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+</head>
+
+<body>
+    <h1>Arrays</h1>
+    <script>
+        'use strict';
+        'esversion: 6';
+
+        function printf(fmt, ...args) {
+            if (fmt !== undefined) {
+                for (let i = 0; i < args.length; i++) {
+                    fmt = fmt.replace("{" + i + "}", args[i]);
+                }
+                document.write(fmt + "<br/>");
+                console.log(fmt.replace("<br/>", ""));
+            }
+        }
+
+        var arr = [1, 2, 5, 1, 10, 34, '12', 75, ["inner array"]];
+
+        //        for(let i=0; i<arr.length; i++) {
+        //            printf("{0}: {1}", i, arr[i]);
+        //        }
+
+        arr.forEach((item, idx) => printf("{0}: {1}", idx, item));
+
+        var test = (item) => typeof(item) == 'number';
+
+        var allNumber = arr.every(test);
+
+        printf("all are number: {0}", allNumber);
+
+
+        var someNumber = arr.some(test);
+
+        printf("some elements are number: {0}", someNumber);
+
+        var numArr = arr.filter(test);
+        printf("number array: {0}", numArr);
+
+        var strNumArr = numArr.join(" : ");
+        printf("{0}", strNumArr);
+
+        var pow2NumArr = numArr.map((item) => item * item);
+        printf("{0}", pow2NumArr);
+
+        var arr2 = ['1', '2', '5', '10'];
+        printf("{0}", typeof(arr2[0]));
+        arr2 = arr2.map(parseInt);
+        printf("{0}", typeof(arr2[0]));
+
+        var sum = numArr.reduce((acc, item) => {
+            //printf("acc: {0}, item: {1}", acc, item);
+            return acc * item;
+        });
+
+        printf("{0} = {1}", numArr.join(" * "), sum);
+    </script>
+</body>
+</html>

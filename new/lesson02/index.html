@@ -1,0 +1,91 @@
+<!doctype html>
+
+<html>
+	<head>
+    <title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+</head>
+
+<body>
+    <script>
+        'use strict'; // esversion: 5
+        display();
+        //document.writeln("a = " + a);
+
+        var a; // глобальная переменная
+
+        function display() {
+            window.a = 20; // глобальная переменная объявленная на 16 строке
+            if (true) {
+                var a = 10; // локальная переменаня
+            }
+            document.writeln("display (" + a + ")");
+        }
+
+        document.writeln("a = " + a);
+        document.writeln("<br/>");
+
+        function sum() {
+            /*document.writeln("argumetns.lengh = " + arguments.length + "<br/>");
+            for(var i=0; i<arguments.length; i++) {
+                document.writeln(i + ": " + arguments[i] + "<br/>");
+            }*/
+            var s = 0;
+            for (var i = 0; i < arguments.length; i++) {
+                if (isFinite(arguments[i]) && typeof(arguments[i]) == 'number') {
+                    s += arguments[i];
+                }
+            }
+            return s;
+        }
+
+        function prod() {
+            var p = 1;
+            for (var i = 0; i < arguments.length; i++) {
+                if (isFinite(arguments[i]) && typeof(arguments[i]) == 'number') {
+                    p *= arguments[i];
+                }
+            }
+            return p;
+        }
+        
+        
+        
+        function toHtml(tag) {
+            tag = tag || "p";
+            document.writeln("<" + tag + ">");
+            var i;
+            for(i=1; i<arguments.length; i++) {
+                document.writeln(arguments[i]);
+                if(arguments.length - 1 != i) {
+                   // document.writeln(", ");
+                }
+            }
+            document.writeln("</" + tag + ">");
+        }
+
+        document.writeln(sum() + "<br/>");
+        document.writeln(sum(1) + "<br/>");
+        document.writeln(sum(2, 3) + "<br/>");
+        document.writeln(sum('4', 5, 6) + "<br/>");
+
+        toHtml("p", "Hello", "World");
+        
+        var f = sum;
+        toHtml("h1", "sum", f(1,2,3));
+        f = prod;
+        toHtml("h2", "prod", prod(4,2,3));
+        
+        var generic = function(f, args) {
+            toHtml("p","f = ", f(...args));
+        }
+        
+        generic(sum, [1,2,3]);
+        generic(prod, [4,2,3]);
+        
+    </script>
+
+   
+</body>
+</html>

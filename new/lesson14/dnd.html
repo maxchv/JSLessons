@@ -1,0 +1,68 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+    <style>
+        div {
+            position: relative;
+            width: 110px;
+            height: 110px;
+            border: 1px dotted black;
+            margin: 4px;
+            display: inline-block;
+        }
+
+        img {
+            width: 95%;
+            position: relative;
+            display: block;
+            margin: 0 auto;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    </style>
+    <script>
+        window.addEventListener('load', () => {
+            let source = document.getElementById("source");
+            let target = document.body;
+
+            source.addEventListener("dragstart", (e) => {
+                console.log("dragstart")
+                e.dataTransfer.setData("text/plain", "source");
+                console.dir(e.dataTransfer);
+            });
+
+            target.addEventListener('dragover', (e) => {
+                console.log("dragover");
+                if(e.target === document.body) {
+                e.dataTransfer.dropEffect = "none";    
+                } else {
+                e.dataTransfer.dropEffect = "move";
+                }
+                e.preventDefault();
+            });
+
+            target.addEventListener('drop', (e) => {
+                let id = e.dataTransfer.getData("text/plain");
+                if (e.target !== document.body) { e.target.append(document.getElementById(id));
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div>
+        <img draggable="true" id="source" src="http://simferopol.itstep.org/wp-content/themes/itstep/images/landings/programmer/comps/step-center-logo.png" alt="" />
+    </div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+
+</html>

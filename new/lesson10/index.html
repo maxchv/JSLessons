@@ -1,0 +1,67 @@
+<!doctype html>
+
+<html>
+	<head>
+    <title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+    <style>
+        output {
+            padding: 0;
+            display: block;
+            height: 50px;
+            width: 100px;
+            border: 1px solid black;
+            margin: 10px auto;
+            text-align: center;
+            line-height: 50px;
+            font-family: cursive;
+        }
+    </style>
+</head>
+
+<body>
+    <output></output>
+    <button>Stop time</button>
+    <br/>
+    <img style="width: 150px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXlPRim49-lACTqYXCDzm62h-dWxwHVXDB3_LeKyzUxJpgsALC2g" alt="car" />
+    <br/>
+    <button>></button>
+    <script>
+        (function() {
+            var car = document.querySelector("img");
+            /*for(let prop in car.style) {
+                console.log(prop + ": " + car.style[prop]);
+            }*/
+            car.style.marginLeft = "0px";
+            (document.querySelector("button:nth-of-type(2)")).onclick = function() {
+                car.style.marginLeft = (parseInt(car.style.marginLeft) + 10) + "px";
+            };
+            
+            var time = document.querySelector("output");         
+            var isStop = false;
+            function setTime() {
+                time.innerHTML = new Date().toLocaleTimeString();
+                if(!isStop) {
+                    setTimeout(setTime, 1000);
+                }
+            }
+            
+            var nTime;// = setInterval(setTime, 1000);
+            setTimeout(setTime, 1000);
+            
+            var stopTimeBtn = document.querySelector("button");
+            
+            stopTimeBtn.onclick = function () {
+                isStop = true;
+                if(nTime) {
+                    clearInterval(nTime);  
+                }
+            };
+            
+            
+            
+        })();
+    </script>
+</body>
+</html>

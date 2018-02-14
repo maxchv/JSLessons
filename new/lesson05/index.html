@@ -1,0 +1,51 @@
+<!doctype html>
+
+<html>
+	<head>
+    <title>RegExp</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+    <script src="../global.js"></script>
+</head>
+
+<body>
+    <h1>RegExp</h1>
+    <script>
+        //printf("{0}", "test");
+        var str = "Lorem ipsum dolor sit\n amet consectetur adipisicing elit.\tOptio perferendis ea ex deleniti incidunt fugiat voluptates dolor, excepturi delectus dolorum, neque expedita obcaecati explicabo aut consectetur quasi soluta, laborum molestias.";
+
+        var splitRe = /[.,]/;
+        var idx = str.search(splitRe);
+        printf("idx = {0}; substring(0, idx) = {1}", idx, str.substring(0, idx));
+
+        var words = str.split(/\.?\,?\s+/);
+        //words.forEach((item, i) => printf("{0} {1}", i, item));
+
+        str = "Васёк Пупкин";
+        printf("{0}", str);
+        var nameRe = /([а-яё]+)(\s+)([а-яё]+)/i;
+        //printf("{0}", nameRe.test(str));
+        str = str.replace(nameRe, "$3$2$1");
+        printf("{0}", str);
+
+        str = "\nkjskljsf 10/11/2011 kljsklfjs 12/01/2016 ljksflkjs 21/05/1991 slfjkskl\nkjskljsf 10/11/2011 kljsklfjs 12/01/2016 ljksflkjs 21/05/1991 slfjkskl";
+
+        var dateRe = /(\d{2})\/(\d{2})\/(\d{4})/g;
+
+        //        var res = str.match(dateRe);
+        //        printf("{0} typeof: {1}", res, typeof(res));
+        while ((res = dateRe.exec(str)) !== null) {
+            printf("{0} typeof: {1}", res, typeof(res));
+        }
+        
+        printf("<h2>ES 2015</h2>");
+        
+        var a = 10;
+        var b = "lorem";
+        var c = true;
+        
+        printf(`a = ${a}, b = ${b}, c = ${c}<br/>`);
+        
+    </script>
+</body>
+</html>

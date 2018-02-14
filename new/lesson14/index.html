@@ -1,0 +1,73 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+</head>
+
+
+<body>
+    <button>button 1</button>
+    <button>button 2</button>
+    <button>button 3</button>
+    <button>button 4</button>
+    <button>button 5</button>
+    <button>button 6</button>
+    <br/>
+    <img hidden="true" width="100" src="https://www.tibco.com/blog/wp-content/uploads/2015/11/tada-620x360.png" alt="" />
+
+    <script>
+        (function() {
+            let allButtons = document.querySelectorAll("button");
+
+            for (let i = 0; i < allButtons.length; i++) {
+                allButtons[i].addEventListener("click", function(e) {
+                    alert(this.innerHTML);
+                    console.log(e.isTrusted);
+                    console.dir(e);
+                });
+            }
+
+            let clickEvent = new MouseEvent("click", {
+                bubbles: true,
+                cancelabel: true,
+                clientX: 225,
+                clientY: 24,
+                wich: 1
+            });
+
+            setTimeout(() => {
+                allButtons[3].dispatchEvent(clickEvent);
+            }, 3000);
+            setTimeout(() => {
+                allButtons[2].dispatchEvent(clickEvent);
+            }, 6000);
+            setTimeout(() => {
+                allButtons[1].dispatchEvent(clickEvent);
+            }, 9000);
+
+            let gameOverEvent = new CustomEvent("gameover", {
+                detail: {
+                    winner: document.querySelector("img"),
+                }
+            });
+
+            document.body.addEventListener("gameover", function(e) {
+                console.dir(e);
+                e.detail.winner.removeAttribute("hidden");
+            });
+
+
+            setTimeout(() => {
+                document.body.dispatchEvent(gameOverEvent);
+            }, 3000);
+
+        })();
+    </script>
+</body>
+
+
+</html>

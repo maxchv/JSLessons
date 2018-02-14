@@ -1,0 +1,86 @@
+<!doctype html>
+
+<html>
+	<head>
+    <title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+    <style>
+        li {
+            cursor: default;
+        }    
+        
+        div {
+            width: 100px;
+            height: 100px;
+            background: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>One</li>
+    </ul>
+
+    <script>
+        (function() {
+            function $(query) {
+                if(query instanceof Element) {
+                    var clone = query.cloneNode(true);
+                    for(let prop in query) {
+                        if(prop.substr(0, 2) == "on") {
+                            if(query[prop]) {
+                                clone[prop] = query[prop];
+                            }
+                        }
+                    }
+                    return clone;
+                }
+                return document.querySelector(query);
+            }
+            
+            var ul = $("ul");
+            //ul.innerHTML += "<li>Second</li>";
+            
+            var li = document.createElement("li");
+            var content = document.createTextNode("Second");
+            li.appendChild(content);
+            
+            function removeThis() {
+                this.style.opacity = 1;
+                var delay = 50;
+                var decrease = 0.1;
+                var self = this;
+                function disappear() {
+                    self.style.opacity -= decrease;
+                    if(Number(self.style.opacity) > 0) {
+                        setTimeout(disappear, delay);
+                    } else {
+                        self.parentElement.removeChild(self);        
+                    }
+                }
+                disappear();                
+            }
+            
+            li.onclick = removeThis;
+            console.dir(content);
+            console.dir(li);
+            ul.append(li);
+            var clone = $(li);
+            clone.onclick = removeThis;
+            ul.insertBefore(clone, ul.firstElementChild);
+            
+            var newFirstNode = $(li);
+            newFirstNode.innerHTML = "First Node";
+            ul.replaceChild(newFirstNode, ul.firstElementChild);
+            
+            var div = document.createElement("div");
+            ul.after(div);
+            var div2 = $(div);
+            div2.style.backgroundColor = "red";
+            ul.before(div2);
+        })();
+    </script>
+</body>
+</html>

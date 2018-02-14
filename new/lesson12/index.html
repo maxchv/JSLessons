@@ -1,0 +1,133 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <title>Events</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+    <style>
+        p {
+            cursor: default;
+        }
+
+        div {
+            border: 1px solid black;
+            padding: 0;
+            margin: 0;
+        }
+
+        div::after {
+            content: attr(id);
+        }
+
+        #one {
+            width: 400px;
+            height: 200px;
+            background: red;
+        }
+
+        #two {
+            width: 300px;
+            height: 150px;
+            background: yellow;
+        }
+
+        #three {
+            width: 200px;
+            height: 100px;
+            background: green;
+        }
+    </style>
+    <script>
+        window.addEventListener('load', function() {
+            let allParagraphs = document.querySelectorAll("p");
+
+            let colors = ['red', 'blue', 'green', 'white', 'yellow'];
+
+            let changeColor = function() {
+                let i = Math.floor(Math.random() * 10) % colors.length;
+                this.style.color = colors[i];
+                this.removeEventListener('click', changeColor);
+            };
+
+
+            for (let i = 0; i < allParagraphs.length; i++) {
+                allParagraphs[i].addEventListener("click", changeColor);
+                allParagraphs[i].addEventListener('mousemove', function(e) {
+                    //console.dir(e);
+                });
+            }
+
+            let oneDiv = document.querySelector("#one");
+            let twoDiv = document.querySelector("#two");
+            let threeDiv =
+                document.querySelector("#three");
+            let out = document.querySelector("out");
+
+            function clickHandler(e) {
+                e.stopPropagation();
+                out.innerHTML += `
+                        target: ${e.target.id}<br/>
+                        this: ${this.id}<br/>
+                        currentTarget: ${e.currentTargert}<br/>
+                        button: ${e.button}<br/>
+                `;
+            }
+
+            /*oneDiv.addEventListener('click', clickHandler, true);
+            twoDiv.addEventListener('click', clickHandler, true);
+            threeDiv.addEventListener('click', clickHandler, true);*/
+
+            /*oneDiv.addEventListener('click', clickHandler);
+            twoDiv.addEventListener('click', clickHandler);
+            threeDiv.addEventListener('click', clickHandler);*/
+            document.body.addEventListener('click', function(e) {
+                if (e.target.nodeName == "DIV") {
+                    out.innerHTML = "target: " + e.target.nodeName;
+                } else {
+                    e.stopPropagation();
+                }
+            }, true);
+
+            let input = document.querySelector("input");
+            input.addEventListener('keydown', function(e) {
+                if(isNaN(e.key)) {
+                   e.preventDefault(); 
+                }
+                console.dir(e);
+            });
+        });
+        
+        function click() {
+            return false;
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Events</h1>
+    <input />
+    <form onsubmit="return false;">
+    <input onkeydown="return true;" />
+    <input type="submit"/>
+    </form>
+    <div>
+        <a href="http://itstep.dp.ua" onmousedown="click" >Itstep Dnepr</a>
+    </div>
+    <p onselect="return false;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse modi, perspiciatis, velit eius quam numquam nam labore soluta ipsam, delectus fuga tempore nihil quia dolorem libero distinctio saepe doloremque. Inventore!</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, repudiandae, odio. Cupiditate inventore magni nobis suscipit. Aut dolorem animi quisquam? Earum voluptatum accusantium, eveniet placeat laboriosam rerum! Quisquam, ipsum, temporibus!</p>
+    <script>
+        //        window.addEventListener('load', function() {
+        //            alert("Load completed");
+        //        });
+    </script>
+    <out></out>
+    <div id="one">
+        <div id="two">
+            <div id="three"></div>
+        </div>
+    </div>
+</body>
+
+</html>

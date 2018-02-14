@@ -1,0 +1,5 @@
+видео: https://youtu.be/MTsUJSws0U8
+
+—оздать простой ToDoList. примеры приложени€ см. todo.png и todolist.gif.
+»спользовать методы манипулировани€ деревом DOM.
+Ќе использовать innerHTML!

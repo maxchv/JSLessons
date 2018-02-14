@@ -1,0 +1,67 @@
+<!doctype html>
+
+<html>
+	<head>
+		<title>Page Title</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0">
+		<style>
+            .hidden {
+/*                display: none;*/
+                visibility: hidden;
+            }
+        </style>
+	</head>
+
+	<body>        
+        <ul id="list" class="cool blue" style="color: blue">
+            <li>first</li>
+            <!-- comment -->
+            <li>second</li>
+            <li>third</li>        
+        </ul>        
+        <button>Off</button>
+        <script>
+            (function(){
+                var second = document.querySelector("li:nth-child(2)");
+                console.dir(second);
+                var prevText = second.previousElementSibling;
+                console.dir(prevText);
+                if(prevText.nodeType == 1) {
+                    console.log(prevText.outerHTML);
+                } else {
+                    console.log("data: " + prevText.data);
+                }
+                
+                var ul = document.body.firstElementChild;
+                console.dir(ul.childNodes instanceof Array);
+                console.dir(ul.children);
+                
+                if(ul.hasAttribute("id")) {
+                    console.log(ul.getAttribute("id"));
+                }
+                
+                ul.setAttribute("title", "it is list");
+                console.log(ul.getAttribute("style"));
+                
+                for(let i=0; i<ul.attributes.length; i++) {
+                    console.log("attr: " + ul.attributes[i].name + " value : " + ul.attributes[i].value);
+                }
+                
+                console.log(ul.className);
+                ul.classList.remove('hidden');
+                var btn = document.querySelector("button");
+                
+                btn.onclick = function() {                    
+                    ul.classList.toggle("hidden");  
+                    if(ul.classList.contains("hidden")) {
+                        btn.innerHTML = "On";
+                    } else {
+                        btn.innerHTML = "Off";
+                    }
+                };
+                
+            })();
+        </script>
+	</body>
+</html>

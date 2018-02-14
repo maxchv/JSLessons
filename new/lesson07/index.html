@@ -1,0 +1,120 @@
+<!doctype html>
+
+<html>
+	<head>
+		<title>Page Title</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0">
+		<style>
+            table, td, th {
+                border: 1px solid black;             
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                height: 200px;
+            }
+            
+           
+            
+        </style>
+	</head>
+
+	<body>
+        <script>
+            function PrintTable(cols, rows) {
+                this.cols = cols;
+                var rows = rows;
+                
+                var self = this;
+                var _drawRow = function() {
+                    document.write("<tr>");
+                    for(let i=0; i < self.cols; i++) {
+                        document.write("<td>");
+                        // TODO: data print here
+                        document.write("</td>");
+                        
+                    }
+                    document.write("</tr>");
+                };//.bind(this);
+                
+                //this.drawRow = _drawRow;
+                
+                this.drawHTML = function() {
+                    console.dir(this);
+                    document.write("<table>");
+                    for(let i=0; i < rows; i++) {
+                        //this.drawRow();
+                        _drawRow();
+                        //_drawRow.apply(this);
+                        //_drawRow.call(this);
+                    }
+                    document.write("</table>");
+                }
+            }
+            
+            var pt = new PrintTable(10, 5);
+            var draw = pt.drawHTML;
+            //draw();
+            //draw.call(pt);
+            
+            function Rectangle(width, height) {
+                this.height = height || 100;
+                this.width = width || 200;
+                this.color = "red";
+            }
+            
+            function Square(size) {
+                this.height = size || 100;
+                this.width = size || 100;
+                this.color = "green";
+            }
+            
+            function drawShape(color) {
+                document.writeln(`<div style="background: ${color || this.color}; width: ${this.width}px; height: ${this.height}px"></div>`);
+            }
+            
+            var rect = new Rectangle();
+            var sq = new Square();
+            drawShape.call(rect, 'blue'); //rect.drawShape = drawShape; 
+                                  //rect.drawShape();
+            function drawSquare() {
+                drawShape.apply(sq, arguments);
+            }
+            drawSquare('red');
+            
+            // 1. родитель
+            function Animal(kind) {
+                console.log("Invoke parent constructor");
+                //console.dir(this);
+                // 2. добавляем св-ва
+                this.kind = kind;
+            }
+            
+            // 3. определяем методы
+            Animal.prototype.show = function() {
+                console.log("Kind: " + this.kind);
+            }
+            
+            // 4. наследник
+            function Cat(name) {
+                // 5. вызваем конструктор родителя
+                //    в контексте дочернего объекта
+                Animal.call(this, "Cat");
+                this.name = name;
+            }
+            
+            //Cat.prototype.__proto__ = Animal.prototype;
+            // 6. наследование - связь через св-во __proto__
+            Cat.prototype = Object.create(Animal.prototype);
+            
+            // 7. задание конструктора текущего объекта
+            Cat.prototype.constructor = Cat;
+            
+            var lion = new Cat('Лева');
+            console.dir(lion);
+            lion.show();
+            
+        </script>
+	</body>
+</html>

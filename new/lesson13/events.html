@@ -1,0 +1,149 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+
+    <style>
+        body,
+        html {
+            height: 100%;
+        }
+
+        table,
+        td {
+            border: 1px solid black;
+        }
+        
+        td {
+            text-align: center;
+            cursor: default;
+        }
+
+        table {
+            width: 50%;
+            height: 250px;
+            border-collapse: collapse;
+        }
+        
+        [data-delete] {
+            background: black;
+            color: white;
+        }
+        
+        button {
+            margin: 4px;
+        }
+
+    </style>
+    <script>
+        window.addEventListener('load', () => {
+            let table = document.querySelector("table");
+            table.addEventListener('click', function(e) {
+                console.log(this.nodeName);
+                console.log(e.target.nodeName);
+                const data_delete = 'data-delete';
+                if(e.target.nodeName == "TD") {
+                    let tr = e.target.parentElement;
+                    console.log(tr.nodeName);
+                    if(tr.hasAttribute(data_delete)) {
+                        tr.removeAttribute(data_delete);
+                    } else {
+                        tr.setAttribute(data_delete, 'true');
+                    }
+                }
+            });
+            
+            let btn = document.querySelector('button');
+            btn.addEventListener('click', () => {
+                let allDelete = document.querySelectorAll('[data-delete]');
+                for(let i=0; i<allDelete.length; i++) {
+                    let parent = allDelete[i].parentElement;   
+                    parent.removeChild(allDelete[i]);
+                }                
+            });
+        });
+
+    </script>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>11</td>
+            <td>12</td>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+        </tr>
+        <tr>
+            <td>16</td>
+            <td>17</td>
+            <td>18</td>
+            <td>19</td>
+            <td>20</td>
+        </tr>
+        <tr>
+            <td>16</td>
+            <td>17</td>
+            <td>18</td>
+            <td>19</td>
+            <td>20</td>
+        </tr>
+        <tr>
+            <td>16</td>
+            <td>17</td>
+            <td>18</td>
+            <td>19</td>
+            <td>20</td>
+        </tr>
+        <tr>
+            <td>16</td>
+            <td>17</td>
+            <td>18</td>
+            <td>19</td>
+            <td>20</td>
+        </tr>
+        <tr>
+            <td>16</td>
+            <td>17</td>
+            <td>18</td>
+            <td>19</td>
+            <td>20</td>
+        </tr>
+        <tr>
+            <td>16</td>
+            <td>17</td>
+            <td>18</td>
+            <td>19</td>
+            <td>20</td>
+        </tr>
+        <tr>
+            <td>16</td>
+            <td>17</td>
+            <td>18</td>
+            <td>19</td>
+            <td>20</td>
+        </tr>
+    </table>
+    <button>Delete rows</button>
+</body>
+
+</html>

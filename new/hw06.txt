@@ -1,0 +1,16 @@
+Практика по регуляркам: https://regexcrossword.com/
+
+Домашнее задание: 
+
+Реализовать набор объектов геометрических фигур.
+
+Объекты Rectangel, Squere, Ellipse и Circle имеют 
+свойства name - имя фигуры, x, y - координаты фигуры.
+Для Rectangle и Ellipse заданы свойства width - ширина
+и height - высота фигуры.
+
+Для Circle задан diameter - диаметр, а для Squere - side - размер стороны.
+
+Реализовать методы вычисления площади фигур 
+(метод area), вывода в html (для Rectangle и Square),
+метод toString;

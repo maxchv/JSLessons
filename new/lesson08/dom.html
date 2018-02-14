@@ -1,0 +1,48 @@
+<!doctype html>
+
+<html>
+	<head>
+    <title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+</head>
+
+<body>
+    <h1>Hello</h1>
+    
+    <nav id="menu">
+        <ul>
+            <li>Link #1</li>
+            <li>Link #2</li>
+            <li>Link #3</li>            
+        </ul>
+    </nav>
+    
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. <span>test</span>Itaque omnis ut voluptatem optio, porro doloribus provident suscipit quisquam ipsum perferendis aspernatur et atque nemo facilis, reiciendis quo error. Sint, inventore?
+    <!-- comment -->
+    </p>
+    
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero perferendis natus molestias asperiores ab inventore laborum fugit aliquid, maiores minima voluptatum error. Beatae vel adipisci quaerat odit at voluptatum numquam!</p>
+
+    <script>
+        "use strict";
+        (function(){
+            let ul = document.querySelector("#menu > ul");
+            //console.log(menu.innerHTML);
+            ul.innerHTML += "<li>DOM</li>";
+            let lis = document.getElementsByTagName("li");
+            console.log("nodeType: " + ul.nodeType);
+            console.log("nodeType: " + ul.nodeName);
+            for(let i=0; i<lis.length; i++) {
+                console.log(lis[i].innerHTML);
+            }
+            let p = document.querySelector("p");
+            let text = p.childNodes[0]
+            
+            console.dir(p);
+            console.dir(text);
+            console.dir(p.childNodes[1]);
+        })();
+    </script>
+</body>
+</html>
