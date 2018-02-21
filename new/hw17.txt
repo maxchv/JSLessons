@@ -1,0 +1,6 @@
+video: 	https://youtu.be/-3FWJGoLO0g
+	https://youtu.be/lK59jqqKUTY
+
+Создать заготовку для игры breakout (см. breakout.jpg).
+Отрисовать блоки (верхние прямоугольники) и ракетку (нижний прямоугольник)
+через canvas

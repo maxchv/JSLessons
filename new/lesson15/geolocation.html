@@ -1,0 +1,57 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+    <style>
+        #map {
+            width: 400px;
+            height: 300px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+    <script>
+        var map;
+
+        function initMap() {
+            // Create a map object and specify the DOM element for display.
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {
+                    lat: -34.397,
+                    lng: 150.644
+                },
+                zoom: 20
+            });
+
+            map.addListener('click', (e) => {                
+                var marker = new google.maps.Marker({
+                    position: e.latLng,
+                    map: map,
+                    title: 'Мы здесь?',
+                    //draggable: true,
+                    animation: google.maps.Animation.DROP,
+                });
+                
+                let lat = e.latLng.lat();
+                let lng = e.latLng.lng();
+                console.dir(`coords: ${lat} ${lng}`);
+                // добавить запрос адреса по координатам
+                // https://maps.googleapis.com/maps/api/geocode/json?latlng=48.47,35.028&key=AIzaSyBl-OeI7YRC6_340_llnwn09G1p4nbHvNU
+                
+                // вывести в html документ (рядом с картой) данные
+                // индекс, страна, облость, город, улица, дом
+            });
+        }
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBl-OeI7YRC6_340_llnwn09G1p4nbHvNU&callback=initMap" async defer></script>   
+</body>
+
+</html>

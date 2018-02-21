@@ -1,0 +1,59 @@
+<!doctype html>
+
+<html>
+	<head>
+    <title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+</head>
+
+<body>
+    <output></output>
+    <script>
+        (function() {
+            //            setTimeout(() => {
+            //                let url ="http://127.0.0.1:62202/adv.html";// "http://itstep.dp.ua";
+            //                let win = window.open(url, "adv", "width=400,height=300,menubar=no,toolbar=no,location=no,scrollbar=no,resizable=no,left=100,top=100");
+            //                console.dir(win);
+            //                //win.document.write("Hello from other window");
+            //                //win.location=url;
+            //            }, 5000);
+            let out = document.querySelector("output");
+
+            function print(prop, value) {
+                if (typeof(value) !== "object") {
+                    document.write(`<li><strong>${prop}</strong>: ${value}</li>`);
+                } else {
+                    document.write(`<li>${prop}`);
+                    document.write("<ul>");
+                    //                    for (let prop in value) {
+                    //                        print(prop, value[prop]);
+                    //                    }
+                    document.write("</ul></li>");
+                }
+            }
+            let obj = [screen, navigator, location, history];
+            for (let i = 0; i < obj.length; i++) {
+                document.write(`<h1>${obj[i]}</h1><ol>`);
+                for (let prop in obj[i]) {
+                    print(prop, obj[i][prop]);
+                }
+                document.write("</ol>");
+            }
+            
+//            let time = 0;
+//            function reloadPage() {
+//                time++;
+//                document.write(time);
+//                if(time < 60) {
+//                    setTimeout(reloadPage, 1000);
+//                } else {
+//                    window.location = "http://itstep.dp.ua";
+//                }
+//            }
+//            reloadPage();
+            
+        })();
+    </script>
+</body>
+</html>

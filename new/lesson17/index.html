@@ -1,0 +1,33 @@
+<!doctype html>
+
+<html>
+	<head>
+		<title>Page Title</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0">
+		<style>
+            canvas {
+                width: 600px;
+                height: 300px;
+                border: 1px solid;
+            }
+        </style>
+	</head>
+
+	<body>
+        <canvas id="canvas"></canvas>
+        <script>
+            let canvas = document.querySelector("#canvas");
+            let ctx = canvas.getContext("2d");
+            console.dir(ctx);
+            // красный прямоугольник
+            ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
+            ctx.fillRect(0, 0, 100, 50);
+            // зеленый прямоугольник
+            ctx.fillStyle = "rgba(0, 255, 0, 0.5)";
+            ctx.fillRect(50, 25, 100, 50);
+            
+        </script>
+        
+	</body>
+</html>

@@ -1,0 +1,6 @@
+video: https://youtu.be/k-NGqjf-IyY
+
+Получить текущую погоду (температуру, давление, влажность)
+используя сервис:
+Текущую широту и долготу определяете в navigator
+http://api.openweathermap.org/data/2.5/weather?APPID=7b5cbb6bb21d0fc862c3b47a3b967ddf&lat=48.28&lon=35.1

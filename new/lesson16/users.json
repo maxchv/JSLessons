@@ -1,0 +1,19 @@
+{
+    "users": [
+        {
+            "name": "Вася",
+            "age": 23,
+            "gender": "male"
+        },
+        {
+            "name": "Маша",
+            "age": 43,
+            "gender": "female"
+        },
+        {
+            "name": "Люся",
+            "age": 203,
+            "gender": "unknown"
+        }
+    ]    
+}
