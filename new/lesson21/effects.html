@@ -1,0 +1,69 @@
+<!doctype html>
+
+<html>
+	<head>
+		<title>Page Title</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0">
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<style>
+            div:last-of-type {
+                color: blue;
+                width: 200px;
+            }
+        </style>
+	</head>
+
+	<body>
+       <button>Toggle</button>
+        <div style='background: blue; color: white' hidden="hidden">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, similique, placeat dicta libero deserunt impedit fugit magni reprehenderit! Rerum, culpa ea delectus adipisci sit optio. Iste ea impedit, in quis.</div>
+        
+        <div style='background: yellow; color: blue'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet quasi dicta, expedita numquam at explicabo facere quos obcaecati incidunt, nemo quam velit minus non itaque! Modi laborum, veritatis nemo id!</div>
+        
+        <button>Fade</button>        
+        <div>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam nesciunt officia, facilis aspernatur itaque similique dignissimos aperiam distinctio nisi, ut quasi quis ad quia consequuntur neque magni nam deserunt ipsum.
+        </div>
+        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae repellendus adipisci accusantium cum, officia tempora hic saepe assumenda, vero sequi, repudiandae temporibus et. Ab hic repudiandae, cumque id delectus aspernatur.</div>
+        <button>Animate</button>
+        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam rerum ullam aperiam dolore natus voluptatibus eum aliquam tempore, placeat id explicabo earum architecto corporis laboriosam dolorem quidem magnam dicta, tempora.</div>
+        
+        <script>
+            $('button:contains(Toggle)').click(() => {
+                $('div:lt(2)').toggle('normal');
+//                $("div:visible").eq(0)
+//                    .hide('slow', ()=>{
+//                        //$('button').text('Show');
+//                });
+//                $("div:hidden").eq(0)
+//                    .show('slow', ()=>{
+//                        //$('button').text('Hide');
+//                });
+            });
+            $('button:contains(Fade)').click(()=>{
+                $('div:eq(2):visible')
+                    .fadeToggle('slow');
+                $('div:eq(2):hidden')
+                    .toggle('slow');
+//                    .fadeTo('slow', 0, function() {
+//                        console.log("complete");
+//                        $(this).fadeTo('slow', 1);
+//                    });
+            });
+            
+            $('button:contains(Animate)').click(()=>{
+                $("div:last").animate({ // properties
+                    marginLeft: "+=100"
+                }, 
+                    'slow',  // duration
+                    'swing', // easy function
+                    function(e){ // callback
+                    $(this).animate({
+                        marginLeft: "-=100"
+                    }, 'slow');                
+                });
+            });
+            
+        </script>
+	</body>
+</html>

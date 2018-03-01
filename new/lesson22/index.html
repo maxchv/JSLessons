@@ -1,0 +1,52 @@
+<!doctype html>
+
+<html>
+	<head>
+		<title>Page Title</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0">
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	</head>
+
+	<body>
+        <script>
+//            $.ajax({
+//                //contentType: 'application/json', 
+//                method: 'GET',
+//                url: 'https://raw.githubusercontent.com/maxchv/ajaxdemo/master/users.json'})
+//                .done(function(data){
+//                    data = JSON.parse(data);
+//                    console.dir(data); 
+//            });
+            
+            $.translate = function(text, callback) {
+                var url = 'https://translation.googleapis.com/language/translate/v2';
+                $.get(url, {
+                    q: text,
+                    source: 'en',
+                    target: 'ru',
+                    key: 'AIzaSyCbQaZKjBMMNjk_NpKHV6_z1lQ8s4gnSjI'
+                }, (data) => {
+                   //console.dir(data); 
+                    callback(data);
+                });
+            };
+            
+            $.fn.red = function() {
+                $(this).css('color', 'red');
+            };
+            
+            $.translate('hello world', (data) => {
+               //console.dir(data);         
+                $(`<div>${data.data.translations[0].translatedText}</div>`)
+                    .appendTo('body');
+                $('div').red();
+            });
+            
+           
+            
+            
+            
+        </script>
+	</body>
+</html>

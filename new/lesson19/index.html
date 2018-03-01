@@ -1,0 +1,106 @@
+<!doctype html>
+
+<html>
+	<head>
+    <title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+    <style>
+        .red {
+            color: red;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(function() {
+            var lis = $("li");
+            lis.eq(1).css('color', 'red');
+            lis.click(function(e) {
+                alert($(this).text());
+            });
+            lis.each(function(idx, li) {
+                console.log($(li).css('color'));
+            });
+
+            $(":checkbox").click(function() {
+                $("ul").slideToggle();
+                //                if($(this).prop('checked')) {
+                //                    $("ul").slideUp();
+                //                } else {
+                //                    $("ul").slideDown();
+                //                }
+            });
+
+            $("<p class='bold'>Hello jQuery</p>").appendTo(document.body);
+
+            var clicks = 0;
+
+            $("p").click(function() {
+                $(this).text(`Clicks ${++clicks}`);
+                $(this).toggleClass('red');
+                $(':selected').each(function(idx, item) {
+                    console.dir(item);
+                    console.dir($(item));
+                    console.dir(item.innerHTML);
+                });
+                //                if(!$(this).hasClass('red')) {
+                //                    $(this).addClass('red');
+                //                } else {
+                //                    $(this).removeClass('red');
+                //                }
+                //                if($(this).attr('class') == 'red') {
+                //                    $(this).attr('class', '');
+                //                } else {
+                //                    $(this).attr('class', "red");  
+                //                }
+            });
+
+            console.dir(lis);
+
+            $('li:eq(0)').css('background', 'green');
+            $('li:gt(1)').css('background', 'yellow');
+            $('li:lt(3)').css('color', 'blue');
+            
+            $("div:has(p)").css("color", "gray");
+            
+            $("p:contains(Lorem)").css('background', 'red');
+        });
+    </script>
+</head>
+
+<body>
+    <select multiple>
+       <option>1</option>
+       <option>2</option>
+       <option>3</option>
+       <option>4</option>
+   </select>
+    <br/>
+    <input type="text" id="one" />
+    <input type="text" id="two" />
+    <input type="text" id="three" />
+
+    <br/>
+    <input type="checkbox" />
+    <ul>
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+        <li>item 4</li>
+        <li>item 5</li>
+        <li>item 6</li>
+    </ul>
+
+    <div>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint sit officiis sapiente architecto nesciunt animi ipsa commodi laboriosam debitis veniam porro quas neque, impedit earum eligendi corrupti fugit! Eius, cum!
+    </div>
+    <div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem repellat pariatur in laborum consequatur ut doloribus minima! Enim aperiam blanditiis atque voluptatum, totam nulla tenetur omnis, sapiente cupiditate qui, odit.</p>
+    </div>
+
+</body>
+</html>
