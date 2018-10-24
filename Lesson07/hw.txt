@@ -1,1 +1,20 @@
 Выполнить практическое задание туториала DOMTutorial2.html
+
+Написать функцию 
+
+function addEventToElement(predicate, eventName, event) {
+	// здесь ваш код
+}
+
+которая обходит дерево DOM, находит все элементы, которые соответсвуют условию predicate
+- это функция, которая принимает элемент узла и возвращает true или false:
+
+function predicate(node) {
+   return node.nodeName == 'BUTTON';
+}
+
+и добавляет новое событие event с именем eventName
+
+Пример применения:
+
+addEventToElement(function(node){ node.nodeName == 'BUTOON'; }, 'click', function(e){ alert('work'); });
